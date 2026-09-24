@@ -1,0 +1,34 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "career-mcp"
+version = "0.1.0"
+description = "MCP-сервер к API hh.ru: поиск вакансий, срез рынка, сравнение резюме с вакансиями"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastmcp>=4.0.7,<5",
+    "httpx>=0.28,<1",
+    "pydantic>=2.12",
+    "pydantic-settings>=2.15",
+    "aiosqlite>=0.22",
+    "pyyaml>=6",
+]
+
+[project.optional-dependencies]
+# Эмбеддинги для нечёткого сопоставления навыков. Тяжёлые (torch), поэтому опционально.
+embeddings = ["sentence-transformers>=3"]
+dev = ["pytest>=8", "pytest-asyncio>=1.4", "respx>=0.23"]
+
+[project.scripts]
+career-mcp = "career_mcp.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/career_mcp"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]

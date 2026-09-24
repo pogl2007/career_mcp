@@ -1,0 +1,343 @@
+{
+  "found": 6,
+  "pages": 1,
+  "page": 0,
+  "per_page": 20,
+  "items": [
+    {
+      "id": "100001",
+      "name": "Стажёр ML-инженер (NLP)",
+      "area": {
+        "id": "1",
+        "name": "Москва",
+        "url": "https://api.hh.ru/areas/1"
+      },
+      "employer": {
+        "id": "9001",
+        "name": "Лаборатория Текстов",
+        "url": "https://api.hh.ru/employers/9001",
+        "alternate_url": "https://hh.ru/employer/9001",
+        "trusted": true
+      },
+      "salary": {
+        "from": 80000,
+        "to": 120000,
+        "currency": "RUR",
+        "gross": false
+      },
+      "salary_range": {
+        "from": 80000,
+        "to": 120000,
+        "currency": "RUR",
+        "gross": false,
+        "mode": {
+          "id": "MONTH",
+          "name": "За месяц"
+        },
+        "frequency": {
+          "id": "MONTHLY",
+          "name": "Раз в месяц"
+        }
+      },
+      "experience": {
+        "id": "noExperience",
+        "name": "Нет опыта"
+      },
+      "work_format": [
+        {
+          "id": "HYBRID",
+          "name": "Гибрид"
+        }
+      ],
+      "published_at": "2026-09-20T10:00:00+0300",
+      "created_at": "2026-09-20T10:00:00+0300",
+      "archived": false,
+      "alternate_url": "https://hh.ru/vacancy/100001",
+      "url": "https://api.hh.ru/vacancies/100001",
+      "type": {
+        "id": "open",
+        "name": "Открытая"
+      },
+      "snippet": {
+        "requirement": "Python, опыт с ML.",
+        "responsibility": "Разработка моделей."
+      }
+    },
+    {
+      "id": "100002",
+      "name": "Стажёр ML-инженер (NLP)",
+      "area": {
+        "id": "2",
+        "name": "Санкт-Петербург",
+        "url": "https://api.hh.ru/areas/2"
+      },
+      "employer": {
+        "id": "9001",
+        "name": "Лаборатория Текстов",
+        "url": "https://api.hh.ru/employers/9001",
+        "alternate_url": "https://hh.ru/employer/9001",
+        "trusted": true
+      },
+      "salary": {
+        "from": 80000,
+        "to": 120000,
+        "currency": "RUR",
+        "gross": false
+      },
+      "salary_range": {
+        "from": 80000,
+        "to": 120000,
+        "currency": "RUR",
+        "gross": false,
+        "mode": {
+          "id": "MONTH",
+          "name": "За месяц"
+        },
+        "frequency": {
+          "id": "MONTHLY",
+          "name": "Раз в месяц"
+        }
+      },
+      "experience": {
+        "id": "noExperience",
+        "name": "Нет опыта"
+      },
+      "work_format": [
+        {
+          "id": "HYBRID",
+          "name": "Гибрид"
+        }
+      ],
+      "published_at": "2026-09-20T10:05:00+0300",
+      "created_at": "2026-09-20T10:05:00+0300",
+      "archived": false,
+      "alternate_url": "https://hh.ru/vacancy/100002",
+      "url": "https://api.hh.ru/vacancies/100002",
+      "type": {
+        "id": "open",
+        "name": "Открытая"
+      },
+      "snippet": {
+        "requirement": "Python, опыт с ML.",
+        "responsibility": "Разработка моделей."
+      }
+    },
+    {
+      "id": "100003",
+      "name": "Junior Data Scientist",
+      "area": {
+        "id": "1",
+        "name": "Москва",
+        "url": "https://api.hh.ru/areas/1"
+      },
+      "employer": {
+        "id": "9002",
+        "name": "Финтех Пример",
+        "url": "https://api.hh.ru/employers/9002",
+        "alternate_url": "https://hh.ru/employer/9002",
+        "trusted": true
+      },
+      "salary": {
+        "from": 2000,
+        "to": 3000,
+        "currency": "USD",
+        "gross": true
+      },
+      "salary_range": {
+        "from": 2000,
+        "to": 3000,
+        "currency": "USD",
+        "gross": true,
+        "mode": {
+          "id": "MONTH",
+          "name": "За месяц"
+        },
+        "frequency": {
+          "id": "MONTHLY",
+          "name": "Раз в месяц"
+        }
+      },
+      "experience": {
+        "id": "between1And3",
+        "name": "От 1 года до 3 лет"
+      },
+      "work_format": [
+        {
+          "id": "REMOTE",
+          "name": "Из дома"
+        }
+      ],
+      "published_at": "2026-09-19T12:00:00+0300",
+      "created_at": "2026-09-19T12:00:00+0300",
+      "archived": false,
+      "alternate_url": "https://hh.ru/vacancy/100003",
+      "url": "https://api.hh.ru/vacancies/100003",
+      "type": {
+        "id": "open",
+        "name": "Открытая"
+      },
+      "snippet": {
+        "requirement": "Python, опыт с ML.",
+        "responsibility": "Разработка моделей."
+      }
+    },
+    {
+      "id": "100004",
+      "name": "ML Engineer (LLM)",
+      "area": {
+        "id": "1",
+        "name": "Москва",
+        "url": "https://api.hh.ru/areas/1"
+      },
+      "employer": {
+        "id": "9003",
+        "name": "Облачные Решения",
+        "url": "https://api.hh.ru/employers/9003",
+        "alternate_url": "https://hh.ru/employer/9003",
+        "trusted": true
+      },
+      "salary": null,
+      "salary_range": null,
+      "experience": {
+        "id": "between1And3",
+        "name": "От 1 года до 3 лет"
+      },
+      "work_format": [
+        {
+          "id": "ON_SITE",
+          "name": "На месте работодателя"
+        }
+      ],
+      "published_at": "2026-09-18T09:30:00+0300",
+      "created_at": "2026-09-18T09:30:00+0300",
+      "archived": false,
+      "alternate_url": "https://hh.ru/vacancy/100004",
+      "url": "https://api.hh.ru/vacancies/100004",
+      "type": {
+        "id": "open",
+        "name": "Открытая"
+      },
+      "snippet": {
+        "requirement": "Python, опыт с ML.",
+        "responsibility": "Разработка моделей."
+      }
+    },
+    {
+      "id": "100005",
+      "name": "Разметчик данных (почасовая оплата)",
+      "area": {
+        "id": "1",
+        "name": "Москва",
+        "url": "https://api.hh.ru/areas/1"
+      },
+      "employer": {
+        "id": "9004",
+        "name": "Разметка Плюс",
+        "url": "https://api.hh.ru/employers/9004",
+        "alternate_url": "https://hh.ru/employer/9004",
+        "trusted": true
+      },
+      "salary": {
+        "from": 400,
+        "to": 500,
+        "currency": "RUR",
+        "gross": false
+      },
+      "salary_range": {
+        "from": 400,
+        "to": 500,
+        "currency": "RUR",
+        "gross": false,
+        "mode": {
+          "id": "HOUR",
+          "name": "За час"
+        },
+        "frequency": null
+      },
+      "experience": {
+        "id": "noExperience",
+        "name": "Нет опыта"
+      },
+      "work_format": [
+        {
+          "id": "REMOTE",
+          "name": "Из дома"
+        }
+      ],
+      "published_at": "2026-09-17T15:00:00+0300",
+      "created_at": "2026-09-17T15:00:00+0300",
+      "archived": false,
+      "alternate_url": "https://hh.ru/vacancy/100005",
+      "url": "https://api.hh.ru/vacancies/100005",
+      "type": {
+        "id": "open",
+        "name": "Открытая"
+      },
+      "snippet": {
+        "requirement": "Python, опыт с ML.",
+        "responsibility": "Разработка моделей."
+      }
+    },
+    {
+      "id": "100006",
+      "name": "Middle ML Engineer",
+      "area": {
+        "id": "1",
+        "name": "Москва",
+        "url": "https://api.hh.ru/areas/1"
+      },
+      "employer": {
+        "id": "9001",
+        "name": "Лаборатория Текстов",
+        "url": "https://api.hh.ru/employers/9001",
+        "alternate_url": "https://hh.ru/employer/9001",
+        "trusted": true
+      },
+      "salary": {
+        "from": 250000,
+        "to": 350000,
+        "currency": "RUR",
+        "gross": true
+      },
+      "salary_range": {
+        "from": 250000,
+        "to": 350000,
+        "currency": "RUR",
+        "gross": true,
+        "mode": {
+          "id": "MONTH",
+          "name": "За месяц"
+        },
+        "frequency": {
+          "id": "MONTHLY",
+          "name": "Раз в месяц"
+        }
+      },
+      "experience": {
+        "id": "between3And6",
+        "name": "От 3 до 6 лет"
+      },
+      "work_format": [
+        {
+          "id": "HYBRID",
+          "name": "Гибрид"
+        }
+      ],
+      "published_at": "2026-09-16T11:00:00+0300",
+      "created_at": "2026-09-16T11:00:00+0300",
+      "archived": false,
+      "alternate_url": "https://hh.ru/vacancy/100006",
+      "url": "https://api.hh.ru/vacancies/100006",
+      "type": {
+        "id": "open",
+        "name": "Открытая"
+      },
+      "snippet": {
+        "requirement": "Python, опыт с ML.",
+        "responsibility": "Разработка моделей."
+      }
+    }
+  ],
+  "clusters": null,
+  "arguments": null
+}

@@ -1,0 +1,130 @@
+{
+  "experience": [
+    {
+      "id": "noExperience",
+      "name": "Нет опыта"
+    },
+    {
+      "id": "between1And3",
+      "name": "От 1 года до 3 лет"
+    },
+    {
+      "id": "between3And6",
+      "name": "От 3 до 6 лет"
+    },
+    {
+      "id": "moreThan6",
+      "name": "Более 6 лет"
+    }
+  ],
+  "work_format": [
+    {
+      "id": "ON_SITE",
+      "name": "На месте работодателя"
+    },
+    {
+      "id": "REMOTE",
+      "name": "Из дома"
+    },
+    {
+      "id": "HYBRID",
+      "name": "Гибрид"
+    },
+    {
+      "id": "FIELD_WORK",
+      "name": "Разъездная"
+    }
+  ],
+  "salary_range_mode": [
+    {
+      "id": "MONTH",
+      "name": "За месяц"
+    },
+    {
+      "id": "HOUR",
+      "name": "За час"
+    },
+    {
+      "id": "SHIFT",
+      "name": "За смену"
+    },
+    {
+      "id": "SERVICE",
+      "name": "За услугу"
+    },
+    {
+      "id": "FLY_IN_FLY_OUT",
+      "name": "За вахту"
+    }
+  ],
+  "salary_range_frequency": [
+    {
+      "id": "DAILY",
+      "name": "Ежедневно"
+    },
+    {
+      "id": "WEEKLY",
+      "name": "Раз в неделю"
+    },
+    {
+      "id": "TWICE_PER_MONTH",
+      "name": "Два раза в месяц"
+    },
+    {
+      "id": "MONTHLY",
+      "name": "Раз в месяц"
+    },
+    {
+      "id": "PER_PROJECT",
+      "name": "За проект"
+    }
+  ],
+  "currency": [
+    {
+      "abbr": "₽",
+      "code": "RUR",
+      "default": true,
+      "in_use": true,
+      "name": "Рубли",
+      "rate": 1.0
+    },
+    {
+      "abbr": "USD",
+      "code": "USD",
+      "default": false,
+      "in_use": true,
+      "name": "Доллары",
+      "rate": 0.0125
+    },
+    {
+      "abbr": "EUR",
+      "code": "EUR",
+      "default": false,
+      "in_use": true,
+      "name": "Евро",
+      "rate": 0.011
+    },
+    {
+      "abbr": "KZT",
+      "code": "KZT",
+      "default": false,
+      "in_use": true,
+      "name": "Тенге",
+      "rate": 6.25
+    }
+  ],
+  "vacancy_label": [
+    {
+      "id": "with_salary",
+      "name": "С указанной зарплатой"
+    },
+    {
+      "id": "internship",
+      "name": "Только стажировки"
+    },
+    {
+      "id": "not_from_agency",
+      "name": "Без вакансий агентств"
+    }
+  ]
+}
