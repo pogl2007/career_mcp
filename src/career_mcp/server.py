@@ -25,13 +25,16 @@ from career_mcp.cache import Cache
 from career_mcp.config import Settings
 from career_mcp.dicts import Directory
 from career_mcp.hh_client import HHClient, HHError, validate_vacancy_id
+from career_mcp.market import build_snapshot, collect_sample
 from career_mcp.models import (
     UNTRUSTED_NOTICE,
+    MarketSnapshot,
     SearchResult,
     VacancyDetail,
     format_salary,
     short_from_item,
 )
+from career_mcp.skills import SkillDictionary
 from career_mcp.text import find_suspicious_lines, html_to_text, split_sections
 
 DESCRIPTION_LIMIT = 4000
@@ -55,6 +58,7 @@ class Services:
     cache: Cache
     hh: HHClient
     directory: Directory
+    skills: SkillDictionary
 
 
 @asynccontextmanager
@@ -65,7 +69,13 @@ async def open_services(
     await cache.open()
     hh = HHClient(settings, cache, transport=transport)
     try:
-        yield Services(settings=settings, cache=cache, hh=hh, directory=Directory(hh))
+        yield Services(
+            settings=settings,
+            cache=cache,
+            hh=hh,
+            directory=Directory(hh),
+            skills=SkillDictionary.load(settings.synonyms_path),
+        )
     finally:
         await hh.aclose()
         await cache.close()
@@ -192,6 +202,33 @@ def create_server(
         with tool_errors():
             v = await _svc(ctx).hh.get_vacancy(vacancy_id)
         return vacancy_detail(v)
+
+    @mcp.tool(annotations=READ_ONLY, timeout=300)
+    async def market_snapshot(
+        query: Annotated[str, Field(description="Роль или запрос, например «ML engineer»")],
+        ctx: Context,
+        area: Annotated[str, Field(description="Город или регион названием из справочника hh")] = "Москва",
+        sample_size: Annotated[int, Field(ge=10, le=200, description="Сколько вакансий разобрать")] = 100,
+    ) -> MarketSnapshot:
+        """Срез рынка по роли и городу: сколько вакансий, распределение по опыту и формату
+        работы, зарплаты (медиана и квартили только по вакансиям с указанной зарплатой,
+        с размером выборки), топ-20 навыков. Дубли вакансии в разных городах считаются
+        один раз. Первый вызов долгий: каждая вакансия загружается целиком."""
+        s = _svc(ctx)
+
+        async def progress(done: int, total: int) -> None:
+            await ctx.report_progress(progress=done, total=total)
+
+        with tool_errors():
+            area_id, area_name = await s.directory.resolve_area(area)
+            found, details, notes = await collect_sample(
+                s.hh, {"text": query, "area": area_id}, sample_size, progress
+            )
+            rates = await s.directory.currency_rates()
+        return build_snapshot(
+            query=query, area=area_name, found=found, details=details,
+            sample_requested=sample_size, rates=rates, skills=s.skills, notes=notes,
+        )
 
     # ------------------------------------------------------------ resources
 

@@ -1,0 +1,144 @@
+# Словарь нормализации навыков: каноническое название → синонимы.
+#
+# Как синонимы ищутся в тексте вакансии или резюме:
+#   - синоним из одного символа (R, C) в тексте не ищется: только точное
+#     совпадение в key_skills, иначе «R» найдётся в каждом «R&D»;
+#   - синоним из двух символов (ML, Go, JS) ищется с учётом регистра;
+#   - остальные — без учёта регистра, по границам слова;
+#   - «*» — любое окончание слова: «статистик*» найдёт «статистики», «статистику».
+# Каноническое название само считается синонимом.
+
+skills:
+  # --- языки программирования ---
+  - {name: Python, category: language, aliases: [python3, питон]}
+  - {name: SQL, category: language, aliases: [sql-запрос*]}
+  - {name: C++, category: language, aliases: [cpp, c/c++]}
+  - {name: C#, category: language, aliases: [csharp]}
+  - {name: Java, category: language, aliases: []}
+  - {name: Go, category: language, aliases: [golang, Go]}
+  - {name: Scala, category: language, aliases: []}
+  - {name: R, category: language, aliases: [язык r, r language]}
+  - {name: JavaScript, category: language, aliases: [js, JS]}
+  - {name: TypeScript, category: language, aliases: [TS]}
+  - {name: Kotlin, category: language, aliases: []}
+  - {name: Rust, category: language, aliases: []}
+  - {name: Bash, category: devops, aliases: [shell, shell-скрипт*, bash-скрипт*]}
+
+  # --- данные и аналитика ---
+  - {name: Pandas, category: data, aliases: []}
+  - {name: NumPy, category: data, aliases: []}
+  - {name: SciPy, category: data, aliases: []}
+  - {name: Polars, category: data, aliases: []}
+  - {name: Matplotlib, category: data, aliases: []}
+  - {name: Seaborn, category: data, aliases: []}
+  - {name: Plotly, category: data, aliases: []}
+  - {name: Jupyter, category: tools, aliases: [jupyter notebook, jupyterlab, jupyter lab]}
+  - {name: Excel, category: analytics, aliases: [ms excel, microsoft excel]}
+  - {name: Power BI, category: analytics, aliases: [powerbi]}
+  - {name: Tableau, category: analytics, aliases: []}
+  - {name: Superset, category: analytics, aliases: [apache superset]}
+  - {name: DataLens, category: analytics, aliases: [yandex datalens]}
+  - {name: Анализ данных, category: analytics, aliases: [data analysis, анализа данных]}
+  - {name: A/B-тестирование, category: analytics, aliases: [a/b тест*, a/b-тест*, ab-тест*, ab тест*, a/b testing, ab testing]}
+  - {name: Data Science, category: ml, aliases: []}
+
+  # --- математика ---
+  - {name: Статистика, category: math, aliases: [statistics, статистик*, матстат*]}
+  - {name: Теория вероятностей, category: math, aliases: [теори* вероятност*, probability theory]}
+  - {name: Линейная алгебра, category: math, aliases: [линейн* алгебр*, linear algebra]}
+
+  # --- классический ML ---
+  - {name: Machine Learning, category: ml, aliases: [machine learning, машинн* обучени*, ML]}
+  - {name: scikit-learn, category: ml, aliases: [sklearn, scikit learn, scikit]}
+  - {name: XGBoost, category: ml, aliases: []}
+  - {name: LightGBM, category: ml, aliases: [lgbm]}
+  - {name: CatBoost, category: ml, aliases: []}
+  - {name: Optuna, category: ml, aliases: []}
+  - {name: SHAP, category: ml, aliases: []}
+  - {name: Feature engineering, category: ml, aliases: [feature engineering, генерац* признак*]}
+  - {name: Временные ряды, category: ml, aliases: [временн* ряд*, time series]}
+  - {name: Рекомендательные системы, category: ml, aliases: [рекомендательн* систем*, recommender systems, recsys]}
+
+  # --- deep learning ---
+  - {name: Deep Learning, category: dl, aliases: [deep learning, глубок* обучени*, DL]}
+  - {name: PyTorch, category: dl, aliases: [torch]}
+  - {name: PyTorch Lightning, category: dl, aliases: []}
+  - {name: TensorFlow, category: dl, aliases: []}
+  - {name: Keras, category: dl, aliases: []}
+  - {name: JAX, category: dl, aliases: []}
+  - {name: NLP, category: nlp, aliases: [natural language processing, обработк* естественного языка]}
+  - {name: Hugging Face Transformers, category: nlp, aliases: [transformers, hugging face, huggingface, hf transformers]}
+  - {name: Computer Vision, category: cv, aliases: [computer vision, компьютерн* зрени*]}
+  - {name: OpenCV, category: cv, aliases: [cv2]}
+  - {name: YOLO, category: cv, aliases: []}
+
+  # --- LLM ---
+  - {name: LLM, category: llm, aliases: [llms, large language models, больш* языков* модел*]}
+  - {name: RAG, category: llm, aliases: [retrieval-augmented generation, retrieval augmented generation]}
+  - {name: LangChain, category: llm, aliases: []}
+  - {name: LangGraph, category: llm, aliases: []}
+  - {name: LlamaIndex, category: llm, aliases: [llama index, llama-index]}
+  - {name: Prompt engineering, category: llm, aliases: [prompt engineering, промпт-инжиниринг, промпт инжиниринг, промптинг]}
+  - {name: Fine-tuning, category: llm, aliases: [fine tuning, finetuning, файнтюнинг, дообучени*, дообуча*]}
+  - {name: LoRA, category: llm, aliases: [qlora]}
+  - {name: vLLM, category: llm, aliases: []}
+  - {name: Ollama, category: llm, aliases: []}
+  - {name: OpenAI API, category: llm, aliases: [openai, chatgpt api]}
+  - {name: MCP, category: llm, aliases: [model context protocol]}
+  - {name: Эмбеддинги, category: llm, aliases: [embeddings, embedding, эмбеддинг*, векторн* представлени*]}
+  - {name: Векторные БД, category: llm, aliases: [vector database, vector db, векторн* баз*, векторн* бд]}
+  - {name: Qdrant, category: llm, aliases: []}
+  - {name: FAISS, category: llm, aliases: []}
+  - {name: ChromaDB, category: llm, aliases: [chroma]}
+  - {name: pgvector, category: llm, aliases: []}
+  - {name: Milvus, category: llm, aliases: []}
+
+  # --- MLOps и инфраструктура ---
+  - {name: MLOps, category: mlops, aliases: []}
+  - {name: MLflow, category: mlops, aliases: []}
+  - {name: DVC, category: mlops, aliases: []}
+  - {name: Kubeflow, category: mlops, aliases: []}
+  - {name: ONNX, category: mlops, aliases: [onnx runtime, onnxruntime]}
+  - {name: Triton Inference Server, category: mlops, aliases: [triton]}
+  - {name: TensorRT, category: mlops, aliases: []}
+  - {name: Docker, category: devops, aliases: [докер*, docker compose, docker-compose]}
+  - {name: Kubernetes, category: devops, aliases: [k8s, кубернетес*]}
+  - {name: Linux, category: devops, aliases: [unix]}
+  - {name: Git, category: devops, aliases: [github, gitlab]}
+  - {name: CI/CD, category: devops, aliases: [ci cd, github actions, gitlab ci, jenkins]}
+  - {name: Terraform, category: devops, aliases: []}
+  - {name: Prometheus, category: devops, aliases: []}
+  - {name: Grafana, category: devops, aliases: []}
+  - {name: Nginx, category: devops, aliases: []}
+
+  # --- backend ---
+  - {name: FastAPI, category: backend, aliases: []}
+  - {name: Flask, category: backend, aliases: []}
+  - {name: Django, category: backend, aliases: []}
+  - {name: REST API, category: backend, aliases: [rest, restful]}
+  - {name: gRPC, category: backend, aliases: []}
+  - {name: Pydantic, category: backend, aliases: []}
+  - {name: SQLAlchemy, category: backend, aliases: []}
+  - {name: asyncio, category: backend, aliases: [aiohttp]}
+  - {name: Celery, category: backend, aliases: []}
+  - {name: RabbitMQ, category: backend, aliases: []}
+  - {name: Kafka, category: bigdata, aliases: [apache kafka]}
+  - {name: Redis, category: database, aliases: []}
+  - {name: Pytest, category: backend, aliases: []}
+  - {name: Streamlit, category: backend, aliases: []}
+  - {name: Gradio, category: backend, aliases: []}
+
+  # --- базы данных и big data ---
+  - {name: PostgreSQL, category: database, aliases: [postgres, postgre sql, psql, постгрес*]}
+  - {name: MySQL, category: database, aliases: []}
+  - {name: MS SQL, category: database, aliases: [mssql, sql server]}
+  - {name: ClickHouse, category: database, aliases: [click house]}
+  - {name: MongoDB, category: database, aliases: [mongo]}
+  - {name: Elasticsearch, category: database, aliases: [elastic search, opensearch]}
+  - {name: NoSQL, category: database, aliases: []}
+  - {name: Airflow, category: bigdata, aliases: [apache airflow]}
+  - {name: Spark, category: bigdata, aliases: [pyspark, apache spark]}
+  - {name: Hadoop, category: bigdata, aliases: [hdfs]}
+
+  # --- языки общения ---
+  - {name: Английский язык, category: human_language, aliases: [english, английск*]}

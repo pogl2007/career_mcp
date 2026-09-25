@@ -110,6 +110,24 @@ async def test_dictionary_resources(client):
     assert {"id": "1", "name": "Москва", "parent_id": "113"} in areas
 
 
+async def test_market_snapshot_on_fixture(client):
+    result = await client.call_tool("market_snapshot", {"query": "ML", "area": "Москва", "sample_size": 10})
+    snap = result.structured_content
+    assert snap["found_total"] == 6
+    assert snap["sample_fetched"] == 6
+    assert snap["duplicates_removed"] == 1
+    assert snap["salary"]["median"] == 174_000
+    assert snap["salary"]["used_in_stats"] == 3
+    assert snap["top_skills"][0]["skill"] == "Python"
+
+
+async def test_repeated_snapshot_uses_cache_only(client, hh_api):
+    await client.call_tool("market_snapshot", {"query": "ML", "sample_size": 10})
+    calls = sum(r.call_count for r in hh_api.routes)
+    await client.call_tool("market_snapshot", {"query": "ML", "sample_size": 10})
+    assert sum(r.call_count for r in hh_api.routes) == calls
+
+
 async def test_captcha_is_reported_to_model_without_retries(server_settings, api):
     api.get("/areas").respond(200, json=load_fixture("areas.json"))
     route = api.get("/vacancies").respond(
