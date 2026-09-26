@@ -9,6 +9,7 @@
 from __future__ import annotations
 
 import json
+import logging
 from collections.abc import AsyncIterator, Iterator
 from contextlib import asynccontextmanager, contextmanager
 from dataclasses import dataclass
@@ -24,18 +25,27 @@ from pydantic import Field
 from career_mcp.cache import Cache
 from career_mcp.config import Settings
 from career_mcp.dicts import Directory
+from career_mcp.extract import RequirementExtractor
 from career_mcp.hh_client import HHClient, HHError, validate_vacancy_id
-from career_mcp.market import build_snapshot, collect_sample
+from career_mcp.llm import LLMClient
+from career_mcp.market import build_snapshot, collect_sample, dedup, gap_items
 from career_mcp.models import (
     UNTRUSTED_NOTICE,
     MarketSnapshot,
+    MatchResult,
+    Requirements,
     SearchResult,
+    SkillGap,
+    SkillMatch,
     VacancyDetail,
     format_salary,
     short_from_item,
 )
-from career_mcp.skills import SkillDictionary
+from career_mcp.resume import ResumeNotFound, ResumeStore
+from career_mcp.skills import EmbeddingMatcher, SkillDictionary, match_skills
 from career_mcp.text import find_suspicious_lines, html_to_text, split_sections
+
+log = logging.getLogger("career_mcp.server")
 
 DESCRIPTION_LIMIT = 4000
 
@@ -59,6 +69,10 @@ class Services:
     hh: HHClient
     directory: Directory
     skills: SkillDictionary
+    resume: ResumeStore
+    extractor: RequirementExtractor
+    llm: LLMClient | None = None
+    embeddings: EmbeddingMatcher | None = None
 
 
 @asynccontextmanager
@@ -68,26 +82,50 @@ async def open_services(
     cache = Cache(settings.db_path)
     await cache.open()
     hh = HHClient(settings, cache, transport=transport)
+    skills = SkillDictionary.load(settings.synonyms_path)
+    llm = None
+    if settings.llm_enabled:
+        llm = LLMClient(
+            settings.llm_base_url,
+            settings.llm_model,
+            api_key=settings.llm_api_key.get_secret_value() if settings.llm_api_key else None,
+            timeout=settings.llm_timeout,
+            rate_per_min=settings.llm_rate_per_min,
+        )
+    embeddings = None
+    if settings.embeddings_enabled:
+        try:
+            embeddings = EmbeddingMatcher(settings.embeddings_model, settings.embeddings_threshold)
+        except RuntimeError as exc:
+            log.warning("%s", exc)
     try:
         yield Services(
             settings=settings,
             cache=cache,
             hh=hh,
             directory=Directory(hh),
-            skills=SkillDictionary.load(settings.synonyms_path),
+            skills=skills,
+            resume=ResumeStore(settings.resume_path, skills),
+            extractor=RequirementExtractor(skills, llm, cache),
+            llm=llm,
+            embeddings=embeddings,
         )
     finally:
         await hh.aclose()
+        if llm is not None:
+            await llm.aclose()
         await cache.close()
 
 
 @contextmanager
 def tool_errors() -> Iterator[None]:
-    """Ошибки hh → ToolError: модель получает понятный текст, а не стек-трейс."""
+    """Ошибки hh и локальных файлов → ToolError: модель получает понятный текст, а не стек-трейс."""
     try:
         yield
     except HHError as exc:
         raise ToolError(exc.message) from None
+    except ResumeNotFound as exc:
+        raise ToolError(str(exc)) from None
 
 
 def _svc(ctx: Context) -> Services:
@@ -120,6 +158,44 @@ def vacancy_detail(v: dict[str, Any]) -> VacancyDetail:
         url=v.get("alternate_url"),
         full_resource=f"vacancy://{v['id']}",
         suspicious_lines=find_suspicious_lines(text),
+    )
+
+
+def build_match(
+    req: Requirements, resume_skills: set[str], skills: SkillDictionary, embeddings: EmbeddingMatcher | None
+) -> MatchResult:
+    matched, missing = match_skills(req.must_have, resume_skills, skills, embeddings)
+    nice_matched, nice_missing = match_skills(req.nice_to_have, resume_skills, skills, embeddings)
+    coverage = round(len(matched) / len(req.must_have), 3) if req.must_have else None
+    if coverage is None:
+        verdict = "В вакансии не нашлось обязательных навыков — оценить покрытие нельзя, смотрите стек."
+    elif coverage >= 0.7:
+        verdict = "Хорошее соответствие: большинство обязательных навыков есть в резюме."
+    elif coverage >= 0.4:
+        verdict = "Частичное соответствие: заметная часть обязательных навыков не закрыта."
+    else:
+        verdict = "Слабое соответствие: большинства обязательных навыков в резюме нет."
+    required = {*req.must_have, *req.nice_to_have, *req.stack}
+    extra = [x for x in sorted(resume_skills) if skills.is_tech(x) and x not in required][:15]
+    notes = list(req.notes)
+    if req.other_requirements:
+        notes.append(
+            "Требования без словарного навыка не участвуют в покрытии: " + "; ".join(req.other_requirements[:5])
+        )
+    return MatchResult(
+        vacancy_id=req.vacancy_id,
+        vacancy_name=req.vacancy_name,
+        must_have_coverage=coverage,
+        verdict=verdict,
+        matched=[SkillMatch(required=r, matched_by=b, method=m, score=sc) for r, b, m, sc in matched],
+        missing=missing,
+        nice_to_have_matched=[m[0] for m in nice_matched],
+        nice_to_have_missing=nice_missing,
+        extra_in_resume=extra,
+        grade=req.grade,
+        english_required=req.english,
+        method="синонимы + эмбеддинги" if embeddings else "словарь синонимов",
+        notes=notes,
     )
 
 
@@ -230,7 +306,55 @@ def create_server(
             sample_requested=sample_size, rates=rates, skills=s.skills, notes=notes,
         )
 
+    @mcp.tool(annotations=READ_ONLY, timeout=90)
+    async def match_resume(
+        vacancy_id: Annotated[str, Field(description="id вакансии hh.ru")], ctx: Context
+    ) -> MatchResult:
+        """Сравнивает резюме пользователя (resume://current) с вакансией: доля покрытых
+        обязательных навыков, совпадения, чего не хватает, что в резюме есть сверх требований.
+        Навыки сопоставляются после нормализации синонимов (эмбеддинги — если включены)."""
+        s = _svc(ctx)
+        with tool_errors():
+            resume = s.resume.load()
+            v = await s.hh.get_vacancy(vacancy_id)
+            req = await s.extractor.extract(v)
+        return build_match(req, set(resume.skills), s.skills, s.embeddings)
+
+    @mcp.tool(annotations=READ_ONLY, timeout=300)
+    async def skill_gap(
+        query: Annotated[str, Field(description="Роль или запрос, например «ML engineer»")],
+        ctx: Context,
+        area: Annotated[str, Field(description="Город или регион названием из справочника hh")] = "Москва",
+        sample_size: Annotated[int, Field(ge=10, le=200)] = 100,
+    ) -> SkillGap:
+        """Навыки, которые рынок чаще всего просит по запросу и которых нет в резюме,
+        по убыванию частоты. Основа для плана подготовки."""
+        s = _svc(ctx)
+
+        async def progress(done: int, total: int) -> None:
+            await ctx.report_progress(progress=done, total=total)
+
+        with tool_errors():
+            resume = s.resume.load()
+            area_id, area_name = await s.directory.resolve_area(area)
+            _, details, notes = await collect_sample(s.hh, {"text": query, "area": area_id}, sample_size, progress)
+        unique, _ = dedup(details)
+        missing, present = gap_items(unique, s.skills, set(resume.skills))
+        notes.append("Частота — доля уникальных вакансий выборки, где навык упомянут в key_skills или описании.")
+        return SkillGap(
+            query=query, area=area_name, sample_unique=len(unique), missing=missing,
+            already_have=present, resume_skills_count=len(resume.skills), notes=notes,
+        )
+
     # ------------------------------------------------------------ resources
+
+    @mcp.resource(
+        "resume://current", mime_type="text/markdown",
+        description="Резюме пользователя из локального файла (путь задаётся в RESUME_PATH).",
+    )
+    async def resume_resource(ctx: Context) -> str:
+        with tool_errors():
+            return _svc(ctx).resume.load().text
 
     @mcp.resource(
         "vacancy://{vacancy_id}",

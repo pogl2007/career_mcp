@@ -128,6 +128,48 @@ async def test_repeated_snapshot_uses_cache_only(client, hh_api):
     assert sum(r.call_count for r in hh_api.routes) == calls
 
 
+async def test_resume_resource(client):
+    text = (await client.read_resource("resume://current"))[0].text
+    assert text.startswith("# Тестовый Кандидат")
+
+
+async def test_match_resume(client):
+    result = await client.call_tool("match_resume", {"vacancy_id": "100001"})
+    m = result.structured_content
+    assert m["must_have_coverage"] == pytest.approx(5 / 6, abs=1e-3)
+    assert m["missing"] == ["NLP"]
+    assert {x["required"] for x in m["matched"]} == {"Python", "PyTorch", "Hugging Face Transformers", "SQL", "PostgreSQL"}
+    assert m["nice_to_have_matched"] == ["Docker"]
+    assert "LangChain" in m["extra_in_resume"]
+    assert m["verdict"].startswith("Хорошее")
+
+
+async def test_match_resume_accepts_no_path_from_model(client):
+    tool = next(t for t in await client.list_tools() if t.name == "match_resume")
+    assert set(tool.input_schema["properties"]) == {"vacancy_id"}
+
+
+async def test_skill_gap(client):
+    result = await client.call_tool("skill_gap", {"query": "ML", "sample_size": 10})
+    gap = result.structured_content
+    assert gap["sample_unique"] == 5
+    missing = [g["skill"] for g in gap["missing"]]
+    assert "Python" not in missing
+    assert missing[0] == "Английский язык"  # в тестовом резюме английского нет, в вакансиях — трижды
+    assert {"Kubernetes", "NLP"} <= set(missing)
+    counts = [g["count"] for g in gap["missing"]]
+    assert counts == sorted(counts, reverse=True)
+    assert "Python" in [g["skill"] for g in gap["already_have"]]
+
+
+async def test_missing_resume_file_is_explained(tmp_path, hh_api):
+    settings = make_settings(tmp_path, resume_path=tmp_path / "nope.md")
+    async with Client(create_server(settings)) as c:
+        with pytest.raises(ToolError) as exc:
+            await c.call_tool("match_resume", {"vacancy_id": "100001"})
+    assert "RESUME_PATH" in str(exc.value)
+
+
 async def test_captcha_is_reported_to_model_without_retries(server_settings, api):
     api.get("/areas").respond(200, json=load_fixture("areas.json"))
     route = api.get("/vacancies").respond(
