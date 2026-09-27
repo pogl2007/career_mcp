@@ -250,10 +250,15 @@ class RequirementExtractor:
 
     async def extract(self, vacancy: dict[str, Any], *, use_llm: bool = True) -> Requirements:
         req = rule_requirements(vacancy, self.skills)
-        if not use_llm or self.llm is None:
+        if not use_llm:
             return req
         text = strip_suspicious_lines(html_to_text(vacancy.get("description")))
         reasons = needs_llm(req, text)
+        if self.llm is None:
+            if reasons:
+                note = f"Правила извлекли не всё ({'; '.join(reasons)}), а LLM выключена (LLM_ENABLED=false)."
+                return req.model_copy(update={"notes": [*req.notes, note]})
+            return req
         if not reasons:
             return req.model_copy(update={"notes": [*req.notes, "LLM не понадобилась: правила извлекли всё."]})
 

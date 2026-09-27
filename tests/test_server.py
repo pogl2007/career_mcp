@@ -162,6 +162,31 @@ async def test_skill_gap(client):
     assert "Python" in [g["skill"] for g in gap["already_have"]]
 
 
+async def test_extract_requirements_rules_only(client):
+    result = await client.call_tool("extract_requirements", {"vacancy_id": "100001"})
+    req = result.structured_content
+    assert req["must_have"][:2] == ["Python", "PyTorch"]
+    assert req["grade"] == "intern"
+    assert req["llm_used"] is False
+    assert any("LLM выключена" in n for n in req["notes"])
+
+
+async def test_extract_requirements_with_llm(tmp_path, hh_api):
+    settings = make_settings(
+        tmp_path, hh_rate_per_sec=1000, hh_burst=1000, llm_enabled=True,
+        llm_base_url="http://llm.test/v1", llm_model="test-model", llm_rate_per_min=6000,
+    )
+    llm_route = hh_api.post("http://llm.test/v1/chat/completions").respond(
+        200, json={"choices": [{"message": {"content": '{"must_have": ["метрики классификации"], "grade": null}'}}]}
+    )
+    async with Client(create_server(settings)) as c:
+        req = (await c.call_tool("extract_requirements", {"vacancy_id": "100001"})).structured_content
+    assert llm_route.call_count == 1
+    assert req["llm_used"] is True
+    assert "метрики классификации" in req["must_have"]
+    assert req["sources"]["must_have"] == "rules+llm"
+
+
 async def test_missing_resume_file_is_explained(tmp_path, hh_api):
     settings = make_settings(tmp_path, resume_path=tmp_path / "nope.md")
     async with Client(create_server(settings)) as c:
