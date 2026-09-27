@@ -179,6 +179,7 @@ class SavedVacancy(BaseModel):
     url: str | None = None
     note: str = ""
     saved_at: str
+    warning: str | None = None
 
 
 # ---------------------------------------------------------------- форматирование

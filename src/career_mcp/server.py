@@ -34,6 +34,7 @@ from career_mcp.models import (
     MarketSnapshot,
     MatchResult,
     Requirements,
+    SavedVacancy,
     SearchResult,
     SkillGap,
     SkillMatch,
@@ -41,8 +42,10 @@ from career_mcp.models import (
     format_salary,
     short_from_item,
 )
+from career_mcp import prompts
 from career_mcp.resume import ResumeNotFound, ResumeStore
 from career_mcp.skills import EmbeddingMatcher, SkillDictionary, match_skills
+from career_mcp.storage import Shortlist
 from career_mcp.text import find_suspicious_lines, html_to_text, split_sections
 
 log = logging.getLogger("career_mcp.server")
@@ -71,6 +74,7 @@ class Services:
     skills: SkillDictionary
     resume: ResumeStore
     extractor: RequirementExtractor
+    shortlist: Shortlist
     llm: LLMClient | None = None
     embeddings: EmbeddingMatcher | None = None
 
@@ -81,6 +85,8 @@ async def open_services(
 ) -> AsyncIterator[Services]:
     cache = Cache(settings.db_path)
     await cache.open()
+    shortlist = Shortlist(cache)
+    await shortlist.init()
     hh = HHClient(settings, cache, transport=transport)
     skills = SkillDictionary.load(settings.synonyms_path)
     llm = None
@@ -107,6 +113,7 @@ async def open_services(
             skills=skills,
             resume=ResumeStore(settings.resume_path, skills),
             extractor=RequirementExtractor(skills, llm, cache),
+            shortlist=shortlist,
             llm=llm,
             embeddings=embeddings,
         )
@@ -359,6 +366,60 @@ def create_server(
             already_have=present, resume_skills_count=len(resume.skills), notes=notes,
         )
 
+    @mcp.tool(
+        annotations=ToolAnnotations(
+            read_only_hint=False, destructive_hint=False, idempotent_hint=True, open_world_hint=True
+        ),
+        timeout=30,
+    )
+    async def save_vacancy(
+        vacancy_id: Annotated[str, Field(description="id вакансии hh.ru")],
+        ctx: Context,
+        note: Annotated[str, Field(max_length=500, description="Заметка: почему интересна, что сделать")] = "",
+    ) -> SavedVacancy:
+        """Сохраняет вакансию в локальный шорт-лист (SQLite) с заметкой. Это единственная
+        операция записи, и она только локальная: на hh.ru ничего не отправляется."""
+        s = _svc(ctx)
+        with tool_errors():
+            vid = validate_vacancy_id(vacancy_id)
+        name = employer = url = warning = None
+        try:
+            v = await s.hh.cached_vacancy(vid) or await s.hh.get_vacancy(vid)
+            name, employer, url = v.get("name"), (v.get("employer") or {}).get("name"), v.get("alternate_url")
+        except HHError as exc:
+            warning = f"Сохранено без названия: {exc.message}"
+        saved = await s.shortlist.save(vid, note, name=name, employer=employer, url=url)
+        return saved.model_copy(update={"warning": warning})
+
+    @mcp.tool(annotations=ToolAnnotations(read_only_hint=True, open_world_hint=False))
+    async def list_saved(ctx: Context) -> list[SavedVacancy]:
+        """Локальный шорт-лист сохранённых вакансий, новые сверху."""
+        return await _svc(ctx).shortlist.list()
+
+    # ------------------------------------------------------------ prompts
+
+    @mcp.prompt
+    def analyze_market(
+        role: Annotated[str, Field(description="Роль, например «ML engineer»")],
+        city: Annotated[str, Field(description="Город из справочника hh")] = "Москва",
+    ) -> str:
+        """Срез рынка → skill gap → что учить в первую очередь."""
+        return prompts.analyze_market(role, city)
+
+    @mcp.prompt
+    def prepare_for_vacancy(
+        vacancy_id: Annotated[str, Field(pattern=r"^\d{1,12}$", description="id вакансии hh.ru")],
+    ) -> str:
+        """Требования → сравнение с резюме → темы вопросов → план подготовки на 1–2 недели."""
+        return prompts.prepare_for_vacancy(vacancy_id)
+
+    @mcp.prompt
+    def tailor_resume(
+        vacancy_id: Annotated[str, Field(pattern=r"^\d{1,12}$", description="id вакансии hh.ru")],
+    ) -> str:
+        """Что подчеркнуть в резюме под вакансию — без выдуманного опыта и навыков."""
+        return prompts.tailor_resume(vacancy_id)
+
     # ------------------------------------------------------------ resources
 
     @mcp.resource(
@@ -404,5 +465,12 @@ def create_server(
         return json.dumps(
             [{"code": c["code"], "name": c.get("name"), "rate": c.get("rate")} for c in cur], ensure_ascii=False
         )
+
+    @mcp.resource(
+        "skills://synonyms", mime_type="application/yaml",
+        description="Словарь нормализации навыков: каноническое название → синонимы.",
+    )
+    async def synonyms_resource(ctx: Context) -> str:
+        return _svc(ctx).settings.synonyms_path.read_text(encoding="utf-8")
 
     return mcp
