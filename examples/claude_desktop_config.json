@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "career-mcp": {
+      "command": "C:\\Users\\Пользователь\\Downloads\\Новая папка\\career-mcp\\.venv\\Scripts\\python.exe",
+      "args": ["-m", "career_mcp"]
+    }
+  }
+}

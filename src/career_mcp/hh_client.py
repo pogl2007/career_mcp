@@ -205,6 +205,12 @@ class HHClient:
             self.settings.hh_access_token.get_secret_value()
         )
 
+    def ensure_token(self) -> None:
+        """Инструментам, которым нужны вакансии, лучше сразу сказать про токен, чем сначала
+        ходить за справочниками и падать на чём-то другом."""
+        if not self.has_token:
+            raise _auth_required_error()
+
     @property
     def halted_reason(self) -> str | None:
         return self._halted.message if self._halted else None

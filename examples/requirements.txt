@@ -1,0 +1,8 @@
+# Отдельное окружение для примера агента.
+# langchain-mcp-adapters требует mcp<2, а сервер (FastMCP 4) — mcp>=2: в одном venv они не уживаются.
+# Агент ходит к серверу по HTTP, поэтому общий venv и не нужен.
+langchain>=1.0
+langgraph>=1.2
+langchain-mcp-adapters>=0.3.2
+langchain-openai>=1.0
+python-dotenv>=1.0

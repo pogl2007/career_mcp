@@ -189,25 +189,36 @@ def _grounded(item: str, text_norm: str, skills: SkillDictionary) -> bool:
     return bool(words) and all(_stem(w) in text_norm for w in words)
 
 
+def _llm_skill_names(raw: str, skills: SkillDictionary) -> list[str]:
+    """LLM иногда отвечает фразой («SQL (Postgres) — JOIN»): сначала ищем в ней словарные навыки."""
+    known = skills.find_in_text(raw)
+    return known if known else [skills.normalize(raw)]
+
+
 def merge_llm(req: Requirements, llm: LLMExtraction, text: str, skills: SkillDictionary) -> Requirements:
     text_norm = norm(text)
     dropped: list[str] = []
     must, nice = list(req.must_have), list(req.nice_to_have)
+    added: list[str] = []
     added_must = added_nice = 0
-    for raw in llm.must_have:
-        name = skills.normalize(raw)
-        if not _grounded(raw, text_norm, skills):
-            dropped.append(raw)
-        elif name not in must and name not in nice and skills.category(name) != "human_language":
-            must.append(name)
-            added_must += 1
-    for raw in llm.nice_to_have:
-        name = skills.normalize(raw)
-        if not _grounded(raw, text_norm, skills):
-            dropped.append(raw)
-        elif name not in must and name not in nice and skills.category(name) != "human_language":
-            nice.append(name)
-            added_nice += 1
+    for target, raws in ((must, llm.must_have), (nice, llm.nice_to_have)):
+        for raw in raws:
+            if not _grounded(raw, text_norm, skills):
+                dropped.append(raw)
+                continue
+            for name in _llm_skill_names(raw, skills):
+                if name in must or name in nice or skills.category(name) == "human_language":
+                    continue
+                target.append(name)
+                added.append(name)
+                if target is must:
+                    added_must += 1
+                else:
+                    added_nice += 1
+    other = [
+        line for line in req.other_requirements
+        if not any(_grounded(item, norm(line), skills) for item in added)
+    ]
 
     sources = dict(req.sources)
     if added_must:
@@ -233,7 +244,7 @@ def merge_llm(req: Requirements, llm: LLMExtraction, text: str, skills: SkillDic
     return req.model_copy(
         update={
             "must_have": must, "nice_to_have": nice, "grade": grade, "english": english,
-            "tasks": tasks, "sources": sources, "llm_used": True, "notes": notes,
+            "tasks": tasks, "other_requirements": other, "sources": sources, "llm_used": True, "notes": notes,
         }
     )
 

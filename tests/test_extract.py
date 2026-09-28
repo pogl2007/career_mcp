@@ -104,6 +104,22 @@ def test_merge_llm_keeps_only_grounded_skills(skills):
     assert merged.llm_used
 
 
+def test_merge_llm_maps_phrases_to_dictionary_skills(skills):
+    # Реальный ответ free/mimo-v2.6-pro на вакансию 100001 (живой вызов 2026-09-24).
+    req = rule_requirements(VACANCIES["100001"], skills)
+    llm = LLMExtraction(
+        must_have=["Python", "PyTorch", "Hugging Face Transformers", "метрики классификации", "SQL (Postgres) — JOIN"],
+        nice_to_have=["Docker", "английский B1 (чтение статей)"],
+    )
+    from career_mcp.text import html_to_text  # noqa: PLC0415
+
+    merged = merge_llm(req, llm, html_to_text(VACANCIES["100001"]["description"]), skills)
+    assert merged.must_have == ["Python", "PyTorch", "Hugging Face Transformers", "SQL", "PostgreSQL", "NLP",
+                                "метрики классификации"]
+    assert merged.nice_to_have == ["Docker"]
+    assert merged.other_requirements == []  # «понимание метрик классификации» закрыто LLM
+
+
 def _llm_response(content: str) -> httpx.Response:
     return httpx.Response(200, json={"choices": [{"message": {"content": content}}]})
 

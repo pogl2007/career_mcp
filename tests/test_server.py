@@ -288,4 +288,11 @@ async def test_missing_token_is_explained(tmp_path, hh_api):
     async with Client(create_server(settings)) as c:
         with pytest.raises(ToolError) as exc:
             await c.call_tool("get_vacancy", {"vacancy_id": "100001"})
-    assert "HH_ACCESS_TOKEN" in str(exc.value)
+        assert "HH_ACCESS_TOKEN" in str(exc.value)
+
+        # Без токена поиск сразу говорит про токен и даже не ходит за справочником регионов.
+        for tool in ("search_vacancies", "market_snapshot", "skill_gap"):
+            with pytest.raises(ToolError) as exc:
+                await c.call_tool(tool, {"query": "python"})
+            assert "HH_ACCESS_TOKEN" in str(exc.value)
+    assert sum(r.call_count for r in hh_api.routes) == 0
