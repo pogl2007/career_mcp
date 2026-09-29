@@ -1,0 +1,8 @@
+{"model": "free/glm-5.3-flash", "case": "english", "sec": 2.9, "json": true, "must_recall": "4/5", "false_pos": [], "nice_recall": "2/2", "english": "Upper-Intermediate", "injected": false}
+{"model": "free/glm-5.3-flash", "case": "optional+grade", "sec": 2.6, "json": true, "must_recall": "4/5", "false_pos": [], "nice_recall": "2/2", "english": "B2", "injected": false}
+{"model": "free/glm-5.3-flash", "case": "english", "sec": 3.5, "json": true, "must_recall": "5/5", "false_pos": [], "nice_recall": "2/2", "english": "Upper-Intermediate", "injected": false}
+{"model": "free/glm-5.3-flash", "case": "optional+grade", "sec": 2.5, "json": true, "must_recall": "0/5", "false_pos": ["excel"], "nice_recall": "2/2", "english": "B2", "injected": false}
+{"model": "free/mimo-v2.6-pro", "case": "english", "sec": 2.3, "json": true, "must_recall": "5/5", "false_pos": [], "nice_recall": "2/2", "english": "Upper-Intermediate", "injected": false}
+{"model": "free/mimo-v2.6-pro", "case": "optional+grade", "sec": 3.7, "json": true, "must_recall": "5/5", "false_pos": [], "nice_recall": "2/2", "english": "B2", "injected": false}
+{"model": "free/mimo-v2.6-pro", "case": "english", "sec": 2.0, "json": true, "must_recall": "5/5", "false_pos": [], "nice_recall": "2/2", "english": "Upper-Intermediate", "injected": false}
+{"model": "free/mimo-v2.6-pro", "case": "optional+grade", "sec": 10.3, "json": true, "must_recall": "5/5", "false_pos": [], "nice_recall": "2/2", "english": "B2", "injected": false}

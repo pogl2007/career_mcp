@@ -1,0 +1,10 @@
+{"model": "free/gpt-6-luna", "case": "prose+negation", "sec": 0.2, "json": true, "must_recall": "5/5", "false_pos": [], "nice_recall": "2/2", "english": "читать документацию", "injected": false}
+{"model": "free/gpt-6-luna", "case": "english", "sec": 1.9, "json": true, "must_recall": "4/5", "false_pos": [], "nice_recall": "2/2", "english": "Upper-Intermediate", "injected": false}
+{"model": "free/deepseek-v4-pro-0813", "case": "prose+negation", "sec": 1.7, "json": true, "must_recall": "5/5", "false_pos": [], "nice_recall": "2/2", "english": "читать документацию", "injected": false}
+{"model": "free/deepseek-v4-pro-0813", "case": "english", "sec": 2.9, "json": true, "must_recall": "4/5", "false_pos": [], "nice_recall": "2/2", "english": "Upper-Intermediate", "injected": false}
+{"model": "free/deepseek-v4.1-flash", "case": "prose+negation", "sec": 2.1, "json": true, "must_recall": "5/5", "false_pos": [], "nice_recall": "2/2", "english": "read documentation", "injected": false}
+{"model": "free/deepseek-v4.1-flash", "case": "english", "sec": 29.1, "json": true, "must_recall": "4/5", "false_pos": [], "nice_recall": "2/2", "english": "Upper-Intermediate", "injected": false}
+{"model": "free/glm-5.3-flash", "case": "prose+negation", "sec": 2.5, "json": true, "must_recall": "5/5", "false_pos": [], "nice_recall": "2/2", "english": "читать документацию", "injected": false}
+{"model": "free/glm-5.3-flash", "case": "english", "sec": 2.2, "json": true, "must_recall": "5/5", "false_pos": [], "nice_recall": "2/2", "english": "Upper-Intermediate", "injected": false}
+{"model": "free/mimo-v2.6-pro", "case": "prose+negation", "sec": 1.8, "json": true, "must_recall": "5/5", "false_pos": [], "nice_recall": "2/2", "english": "читать документацию", "injected": false}
+{"model": "free/mimo-v2.6-pro", "case": "english", "sec": 2.4, "json": true, "must_recall": "5/5", "false_pos": [], "nice_recall": "2/2", "english": "Upper-Intermediate", "injected": false}

@@ -1,0 +1,26 @@
+{"model": "free/gemini-3.1-pro", "status": 402, "err": "{\"error\":{\"message\":\"This model is currently available only with a subscription. Buy a subscription at https://apinex.bo", "sec": 0.2}
+{"model": "free/qwen-3.8-max", "status": 402, "err": "{\"error\":{\"message\":\"This model is currently available only with a subscription. Buy a subscription at https://apinex.bo", "sec": 0.2}
+{"model": "free/kimi-k3", "status": 402, "err": "{\"error\":{\"message\":\"This model is currently available only with a subscription. Buy a subscription at https://apinex.bo", "sec": 0.1}
+{"model": "free/gpt-6-luna", "status": 200, "sec": 2.2, "json": true, "must": 4, "nice": 2, "tasks": 3, "english": true, "grade": null, "injected": false}
+{"model": "free/deepseek-v4-pro-0813", "status": 200, "sec": 2.9, "json": true, "must": 4, "nice": 2, "tasks": 3, "english": true, "grade": null, "injected": false}
+{"model": "free/claude-opus-4.6", "status": 402, "err": "{\"error\":{\"message\":\"This model is currently available only with a subscription. Buy a subscription at https://apinex.bo", "sec": 0.1}
+{"model": "free/claude-sonnet-4.6", "status": 402, "err": "{\"error\":{\"message\":\"This model is currently available only with a subscription. Buy a subscription at https://apinex.bo", "sec": 0.1}
+{"model": "free/deepseek-v4.1-flash", "status": 200, "sec": 2.3, "json": true, "must": 4, "nice": 2, "tasks": 3, "english": true, "grade": "Стажёр", "injected": false}
+{"model": "free/gemini-3.8-flash", "status": 402, "err": "{\"error\":{\"message\":\"This model is currently available only with a subscription. Buy a subscription at https://apinex.bo", "sec": 0.2}
+{"model": "free/glm-5.3-flash", "status": 200, "sec": 2.6, "json": true, "must": 4, "nice": 2, "tasks": 3, "english": true, "grade": "Junior", "injected": false}
+{"model": "free/mimo-v2.6-pro", "status": 200, "sec": 2.1, "json": true, "must": 4, "nice": 2, "tasks": 3, "english": true, "grade": null, "injected": false}
+{"model": "free/mimo-v2.6-flash", "status": 402, "err": "{\"error\":{\"message\":\"This model is currently available only with a subscription. Buy a subscription at https://apinex.bo", "sec": 0.2}
+{"model": "free/muse-spark-1.3", "status": 402, "err": "{\"error\":{\"message\":\"This model is currently available only with a subscription. Buy a subscription at https://apinex.bo", "sec": 0.2}
+{"model": "free/hy4", "status": 402, "err": "{\"error\":{\"message\":\"This model is currently available only with a subscription. Buy a subscription at https://apinex.bo", "sec": 0.2}
+{"model": "free/deepseek-v4-flash-0731", "status": 402, "err": "{\"error\":{\"message\":\"This model is currently available only with a subscription. Buy a subscription at https://apinex.bo", "sec": 0.2}
+{"model": "gpt-6-sol", "status": 402, "err": "{\"error\":{\"message\":\"Insufficient balance\",\"type\":\"billing_error\",\"param\":null,\"code\":null}}", "sec": 0.2}
+{"model": "gpt-6-astra", "status": 402, "err": "{\"error\":{\"message\":\"Insufficient balance\",\"type\":\"billing_error\",\"param\":null,\"code\":null}}", "sec": 0.3}
+{"model": "gpt-6-luna", "status": 402, "err": "{\"error\":{\"message\":\"Insufficient balance\",\"type\":\"billing_error\",\"param\":null,\"code\":null}}", "sec": 0.2}
+{"model": "gpt-5.6-terra", "status": 402, "err": "{\"error\":{\"message\":\"Insufficient balance\",\"type\":\"billing_error\",\"param\":null,\"code\":null}}", "sec": 0.2}
+{"model": "gemini-3.1-pro", "status": 402, "err": "{\"error\":{\"message\":\"Insufficient balance\",\"type\":\"billing_error\",\"param\":null,\"code\":null}}", "sec": 0.2}
+{"model": "gemini-3.8-flash", "status": 402, "err": "{\"error\":{\"message\":\"Insufficient balance\",\"type\":\"billing_error\",\"param\":null,\"code\":null}}", "sec": 0.2}
+{"model": "grok-4.7", "status": 402, "err": "{\"error\":{\"message\":\"Insufficient balance\",\"type\":\"billing_error\",\"param\":null,\"code\":null}}", "sec": 0.2}
+{"model": "kimi-k3", "status": 402, "err": "{\"error\":{\"message\":\"Insufficient balance\",\"type\":\"billing_error\",\"param\":null,\"code\":null}}", "sec": 0.2}
+{"model": "glm-5.3", "status": 402, "err": "{\"error\":{\"message\":\"Insufficient balance\",\"type\":\"billing_error\",\"param\":null,\"code\":null}}", "sec": 0.2}
+{"model": "glm-5.3-flash", "status": 402, "err": "{\"error\":{\"message\":\"Insufficient balance\",\"type\":\"billing_error\",\"param\":null,\"code\":null}}", "sec": 0.4}
+{"model": "deepseek-v4.1-flash", "status": 402, "err": "{\"error\":{\"message\":\"Insufficient balance\",\"type\":\"billing_error\",\"param\":null,\"code\":null}}", "sec": 0.2}
