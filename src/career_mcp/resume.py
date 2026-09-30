@@ -60,8 +60,10 @@ class ResumeStore:
         if self._cached and self._cached[0] == mtime:
             return self._cached[1]
         text = self.path.read_text(encoding="utf-8")
-        explicit = [s for s in (self._skills.lookup(x) for x in _skills_section(text)) if s is not None]
-        explicit_names = list(dict.fromkeys(s.name for s in explicit))
+        # Раздел навыков пользователь пишет сам: незнакомые словарю навыки тоже берём (как есть).
+        explicit_names = self._skills.normalize_many(
+            [x for x in _skills_section(text) if 1 < len(x.strip()) <= 40]
+        )
         found = self._skills.find_in_text(text)
         all_skills = list(dict.fromkeys([*explicit_names, *found]))
         resume = Resume(path=self.path, text=text, skills=all_skills, explicit_skills=explicit_names)

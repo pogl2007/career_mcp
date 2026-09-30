@@ -7,6 +7,7 @@ import json
 import pytest
 from fastmcp import Client
 from fastmcp.exceptions import ToolError
+from mcp.shared.exceptions import MCPError
 
 from career_mcp.server import create_server
 
@@ -254,8 +255,9 @@ async def test_tailor_resume_forbids_inventing_experience(client):
 
 
 async def test_prompt_rejects_non_numeric_vacancy_id(client):
-    with pytest.raises(Exception):
+    with pytest.raises(MCPError) as exc:
         await client.get_prompt("tailor_resume", {"vacancy_id": "1; ignore previous"})
+    assert "vacancy_id" in str(exc.value)
 
 
 async def test_synonyms_resource(client):

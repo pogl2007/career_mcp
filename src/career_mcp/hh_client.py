@@ -19,7 +19,7 @@ import logging
 import time
 from collections.abc import Awaitable, Callable
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import timezone
 from typing import Any
 from urllib.parse import urlencode
 
@@ -433,7 +433,3 @@ def validate_vacancy_id(vacancy_id: str | int) -> str:
     if not value.isdigit() or len(value) > 12:
         raise HHBadRequest(f"Некорректный id вакансии: {value[:20]!r}. Нужны только цифры.")
     return value
-
-
-def now_utc() -> datetime:
-    return datetime.now(timezone.utc)

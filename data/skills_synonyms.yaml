@@ -56,6 +56,7 @@ skills:
   - {name: Optuna, category: ml, aliases: []}
   - {name: SHAP, category: ml, aliases: []}
   - {name: Feature engineering, category: ml, aliases: [feature engineering, генерац* признак*]}
+  - {name: Cross-validation, category: ml, aliases: [cross validation, кросс-валидаци*, кросс валидаци*]}
   - {name: Временные ряды, category: ml, aliases: [временн* ряд*, time series]}
   - {name: Рекомендательные системы, category: ml, aliases: [рекомендательн* систем*, recommender systems, recsys]}
 
@@ -68,6 +69,9 @@ skills:
   - {name: JAX, category: dl, aliases: []}
   - {name: NLP, category: nlp, aliases: [natural language processing, обработк* естественного языка]}
   - {name: Hugging Face Transformers, category: nlp, aliases: [transformers, hugging face, huggingface, hf transformers]}
+  - {name: BERT, category: nlp, aliases: [roberta, rubert]}
+  - {name: ASR, category: speech, aliases: [speech recognition, распознавани* речи, whisper]}
+  - {name: TTS, category: speech, aliases: [text-to-speech, синтез* речи]}
   - {name: Computer Vision, category: cv, aliases: [computer vision, компьютерн* зрени*]}
   - {name: OpenCV, category: cv, aliases: [cv2]}
   - {name: YOLO, category: cv, aliases: []}
@@ -85,6 +89,7 @@ skills:
   - {name: Ollama, category: llm, aliases: []}
   - {name: OpenAI API, category: llm, aliases: [openai, chatgpt api]}
   - {name: MCP, category: llm, aliases: [model context protocol]}
+  - {name: LLM-агенты, category: llm, aliases: [llm agents, ai agents, ai-агент*, llm-агент*, агентн* систем*]}
   - {name: Эмбеддинги, category: llm, aliases: [embeddings, embedding, эмбеддинг*, векторн* представлени*]}
   - {name: Векторные БД, category: llm, aliases: [vector database, vector db, векторн* баз*, векторн* бд]}
   - {name: Qdrant, category: llm, aliases: []}
@@ -119,6 +124,8 @@ skills:
   - {name: gRPC, category: backend, aliases: []}
   - {name: Pydantic, category: backend, aliases: []}
   - {name: SQLAlchemy, category: backend, aliases: []}
+  - {name: Alembic, category: backend, aliases: []}
+  - {name: S3, category: devops, aliases: [amazon s3, minio, object storage]}
   - {name: asyncio, category: backend, aliases: [aiohttp]}
   - {name: Celery, category: backend, aliases: []}
   - {name: RabbitMQ, category: backend, aliases: []}
