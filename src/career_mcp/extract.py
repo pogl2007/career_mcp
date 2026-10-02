@@ -17,12 +17,13 @@ from __future__ import annotations
 
 import logging
 import re
+import time
 from typing import Any
 
 from pydantic import BaseModel, Field, ValidationError
 
 from career_mcp.cache import Cache
-from career_mcp.llm import LLMClient, LLMError
+from career_mcp.llm import LLMClient, LLMError, LLMUnavailable
 from career_mcp.models import Requirements
 from career_mcp.skills import SkillDictionary
 from career_mcp.text import html_to_text, norm, split_sections, strip_suspicious_lines
@@ -86,8 +87,13 @@ def rule_requirements(vacancy: dict[str, Any], skills: SkillDictionary) -> Requi
     nice_skills = skills.find_in_text("\n".join(sections["nice_to_have"]))
     if sections["requirements"]:
         req_skills = skills.find_in_text("\n".join(sections["requirements"]))
+    elif sections["responsibilities"]:
+        # Требований нет, но есть задачи: навыки из задач. Описание компании и условия не смотрим —
+        # там «мы исследуем AI/ML подходы», а не требования к кандидату.
+        notes.append("Раздел требований не найден — навыки взяты из раздела задач.")
+        req_skills = [s for s in skills.find_in_text("\n".join(sections["responsibilities"])) if s not in nice_skills]
     else:
-        notes.append("Раздел требований не найден — навыки взяты из всего описания.")
+        notes.append("Разделы в описании не найдены — навыки взяты из всего текста.")
         req_skills = [s for s in skills.find_in_text(text) if s not in nice_skills]
 
     other: list[str] = []
@@ -258,6 +264,10 @@ class RequirementExtractor:
         self.llm = llm
         self.cache = cache
         self.cache_ttl = cache_ttl
+        # Если провайдер недоступен (оплата, отметка, ключ), не дёргаем его на каждой вакансии.
+        self.pause_seconds = 300.0
+        self._paused_until = 0.0
+        self._pause_reason = ""
 
     async def extract(self, vacancy: dict[str, Any], *, use_llm: bool = True) -> Requirements:
         req = rule_requirements(vacancy, self.skills)
@@ -272,6 +282,9 @@ class RequirementExtractor:
             return req
         if not reasons:
             return req.model_copy(update={"notes": [*req.notes, "LLM не понадобилась: правила извлекли всё."]})
+        if time.monotonic() < self._paused_until:
+            note = f"LLM временно отключена ({self._pause_reason}) — результат только по правилам."
+            return req.model_copy(update={"notes": [*req.notes, note]})
 
         extraction = await self._llm_extract(str(vacancy.get("id")), vacancy.get("name") or "", text)
         if extraction is None:
@@ -288,6 +301,11 @@ class RequirementExtractor:
         try:
             raw = await self.llm.complete_json(LLM_SYSTEM, user)
             extraction = LLMExtraction.model_validate(raw)
+        except LLMUnavailable as exc:
+            self._paused_until = time.monotonic() + self.pause_seconds
+            self._pause_reason = str(exc).rstrip(".")
+            log.warning("LLM недоступна, пауза %.0f с: %s", self.pause_seconds, exc)
+            return None
         except (LLMError, ValidationError) as exc:
             log.warning("LLM-извлечение для %s не удалось: %s", vacancy_id, exc)
             return None

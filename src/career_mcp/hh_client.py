@@ -424,6 +424,55 @@ class HHClient:
         log.error("Запросы к hh остановлены: %s", err.error_type or err.status)
 
 
+async def request_app_token(
+    settings: Settings, *, transport: httpx.AsyncBaseTransport | None = None
+) -> str:
+    """Разово получает токен приложения (grant_type=client_credentials).
+
+    Сервер сам этого не делает: каждый новый запрос отзывает прежний токен,
+    а hh выдаёт их не чаще раза в 5 минут. Поэтому это отдельная ручная команда.
+    """
+    if not settings.hh_client_id or not settings.hh_client_secret:
+        raise HHConfigError("Нужны HH_CLIENT_ID и HH_CLIENT_SECRET в .env (dev.hh.ru/admin → ваше приложение).")
+    if not settings.hh_contact_email:
+        raise HHConfigError("Не задан HH_CONTACT_EMAIL: hh требует контакт в User-Agent.")
+    async with httpx.AsyncClient(
+        base_url=settings.hh_base_url,
+        timeout=settings.hh_timeout,
+        transport=transport,
+        trust_env=settings.hh_trust_env,
+        headers={"User-Agent": settings.user_agent, "HH-User-Agent": settings.user_agent},
+    ) as http:
+        try:
+            response = await http.post(
+                "/token",
+                data={
+                    "grant_type": "client_credentials",
+                    "client_id": settings.hh_client_id,
+                    "client_secret": settings.hh_client_secret.get_secret_value(),
+                },
+            )
+        except httpx.HTTPError as exc:
+            raise HHNetworkError(f"Не удалось соединиться с api.hh.ru ({type(exc).__name__}).") from None
+
+    try:
+        body = response.json()
+    except ValueError:
+        body = {}
+    if response.status_code == 200 and body.get("access_token"):
+        return str(body["access_token"])
+    error = str(body.get("error") or response.status_code)
+    description = str(body.get("error_description") or "")
+    if response.status_code == 403 and "too early" in description:
+        raise HHRateLimited("hh выдаёт токен приложения не чаще раза в 5 минут — подождите и повторите.", status=403)
+    raise HHAuthError(
+        f"hh не выдал токен приложения: {error} {description}".strip()
+        + ". Проверьте HH_CLIENT_ID и HH_CLIENT_SECRET.",
+        status=response.status_code,
+        error_type=error,
+    )
+
+
 def _cache_key(path: str, query: list[tuple[str, str]]) -> str:
     return f"GET {path}?{urlencode(query)}" if query else f"GET {path}"
 

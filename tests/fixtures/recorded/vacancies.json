@@ -1,0 +1,1085 @@
+{
+  "137649397": {
+    "id": "137649397",
+    "premium": false,
+    "billing_type": {
+      "id": "standard",
+      "name": "Стандарт"
+    },
+    "name": "Стажер ML-разработчик (fast track)",
+    "response_letter_required": false,
+    "area": {
+      "id": "1",
+      "name": "Москва",
+      "url": "https://api.hh.ru/areas/1"
+    },
+    "salary": null,
+    "salary_range": null,
+    "type": {
+      "id": "direct",
+      "name": "Рекламная"
+    },
+    "allow_messages": false,
+    "experience": {
+      "id": "noExperience",
+      "name": "Нет опыта"
+    },
+    "department": {
+      "id": "yandex-1740-yandex",
+      "name": "Яндекс"
+    },
+    "show_contacts": false,
+    "description": "<p>Оплачиваемая стажировка в сервисах и продуктах Яндекса по Машинному обучению с ускоренным отбором. Пройдите отбор и получите офер на стажировку в Яндекс за неделю.</p> <p>Ждём начинающих ML-разработчиков со знанием основ ML и DL. Подойдет даже тем, кто ранее подавался на стажировку, но получил отказ.</p> <p><strong>Примеры задач, которые решают стажёры:</strong></p> <ul> <li> <p>Обучают модели для международного Поиска</p> </li> <li> <p>Улучшают качество поиска Маркета: занимаются обучением моделей и features engineering</p> </li> <li> <p>Учат YandexGPT работать с внешней информацией</p> </li> </ul> <p><strong>Что нужно уметь:</strong></p> <ul> <li> <p>Владеть Python или С++</p> </li> <li> <p>Знать методы машинного обучения</p> </li> <li> <p>Иметь теоретические знания в DL</p> </li> </ul> <p><strong>Что вас ждёт</strong></p> <ul> <li> <p>Официальное оформление на стажировку в Яндексе;</p> </li> <li> <p>Гибкий график: 20, 30 или 40 часов в неделю</p> </li> <li> <p>Оплачиваемая стажировка от 3 до 6 месяцев в зависимости от занятости</p> </li> <li> <p>Возможность перейти в штат сразу после стажировки или позднее (отложенный офер)</p> </li> </ul> <ul> <li> <p>Доступ к ресурсам и возможностям Яндекса</p> </li> <li> <p>Крутой офис Яндекса в одном из городов присутствия (Москва, Санкт-Петербург) со всем необходимым для комфортной работы и отдыха</p> </li> <li> <p>Релокация иногородних в Москву на период стажировки при успешном прохождении отбора</p> </li> <li> <p>Компенсация обедов</p> </li> </ul> <p>Прием заявок на программу ускоренного отбора открыт до 4 октября включительно. Заполняйте заявку по ссылке, которая откроектся после нажания кнопки “Откликнуться”</p>",
+    "inclusiveness_description": null,
+    "inclusiveness_types": [],
+    "vacancy_constructor_template": null,
+    "key_skills": [],
+    "auto_response": {
+      "accept_auto_response": false
+    },
+    "accept_handicapped": false,
+    "accept_kids": false,
+    "age_restriction": null,
+    "archived": false,
+    "specializations": [],
+    "professional_roles": [
+      {
+        "id": "96",
+        "name": "Программист, разработчик"
+      }
+    ],
+    "code": null,
+    "hidden": false,
+    "quick_responses_allowed": false,
+    "driver_license_types": [],
+    "accept_incomplete_resumes": false,
+    "employer": {
+      "id": "1740",
+      "name": "Яндекс",
+      "trusted": true,
+      "alternate_url": "https://hh.ru/employer/1740"
+    },
+    "published_at": "2026-09-22T14:39:48+0300",
+    "created_at": "2026-09-22T14:39:48+0300",
+    "initial_created_at": "2026-09-22T14:39:48+0300",
+    "has_test": false,
+    "test": null,
+    "alternate_url": "https://hh.ru/vacancy/137649397?tech_source=api",
+    "accept_temporary": false,
+    "languages": [],
+    "approved": true,
+    "employment_form": {
+      "id": "FULL",
+      "name": "Полная"
+    },
+    "fly_in_fly_out_duration": [],
+    "accept_labor_contract": false,
+    "civil_law_contracts": [],
+    "internship": false,
+    "night_shifts": false,
+    "work_format": [
+      {
+        "id": "ON_SITE",
+        "name": "На месте работодателя"
+      }
+    ],
+    "work_schedule_by_days": [
+      {
+        "id": "FIVE_ON_TWO_OFF",
+        "name": "5/2"
+      }
+    ],
+    "working_hours": [
+      {
+        "id": "HOURS_8",
+        "name": "8 часов"
+      }
+    ],
+    "show_logo_in_search": true,
+    "closed_for_applicants": false
+  },
+  "137535328": {
+    "id": "137535328",
+    "premium": false,
+    "billing_type": {
+      "id": "standard",
+      "name": "Стандарт"
+    },
+    "name": "Стажер-инженер технологий машинного обучения",
+    "response_letter_required": false,
+    "area": {
+      "id": "1",
+      "name": "Москва",
+      "url": "https://api.hh.ru/areas/1"
+    },
+    "salary": null,
+    "salary_range": null,
+    "type": {
+      "id": "open",
+      "name": "Открытая"
+    },
+    "allow_messages": true,
+    "experience": {
+      "id": "noExperience",
+      "name": "Нет опыта"
+    },
+    "department": null,
+    "show_contacts": false,
+    "description": "<p><strong>R-Vision</strong> – разработчик надежных систем цифровизации и кибербезопасности. С 2011 года мы создаем технологии, которые помогают организациям эффективно противостоять киберугрозам, поддерживать надежность ИТ‑инфраструктуры и обеспечивать цифровую трансформацию.</p> <p> </p> <p><strong>О нашей команде:</strong><br />Управление технологий искусственного интеллекта и анализа данных — это R&amp;D команда. Мы непрерывно исследуем передовые AI/ML подходы и трансформируем их в прикладные ИИ-сервисы (AI-агенты, RAG-системы, NLP-пайплайны), которые встраиваются в коммерческие продукты для защиты наших клиентов и во внутренние процессы компании.<br /><br />Мы активно усиливаем ИИ-направление и поэтому ищем стажёра-разработчика,<br />который вместе с нами будет участвовать в развитии продуктов и сервисов:<br />будешь реализовывать новые фичи, работать с существующими продуктами, разбираться с возникающими проблемами и создавать решения вокруг моделей, адаптируя их под нашу платформу.<br /><br />С нас — крутые менторы и реальный опыт, с тебя — желание учиться и развиваться в области разработки!</p> <p> </p> <p><strong>Пожалуйста, обрати внимание на требования, это важно:</strong></p> <ul> <li>Стажировка ориентирована на обучающихся на 4 курсе бакалавриата или 1–2 курсе магистратуры.</li> <li>Рассматриваем обучающихся, которые уже обладают базовой подготовкой в направлениях, связанных с бизнес-информатикой, прикладной математикой и компьютерными науками, а также смежными образовательными программами.</li> <li>Готовность уделять стажировке 30–40 часов в неделю.</li> <li>Стажировка рассчитана на 6 месяцев с дальнейшей возможностью роста до младшего специалиста.</li> </ul> <div><strong><strong>Задачи</strong>:</strong></div> <ul> <li>Разработка backend-сервисов на Python (FastAPI): интеграционные коннекторы к внутренним системам, вспомогательные API, обработчики очередей;</li> <li>Доработка сервиса гибридного поиска и оркестратора LLM-сценариев: новые возможности, обработка ошибок, покрытие тестами;</li> <li>Подготовка и сопровождение сборок: Dockerfile, Docker Compose, CI-пайплайны;</li> <li>Инструменты для оценки качества: наборы тестовых запросов, скрипты замеров, сбор метрик;</li> <li>Техническая документация по репозиториям и API.</li> </ul> <p> </p> <p><strong>Чему научишься:</strong></p> <p>Работе с production LLM-инфраструктурой, построению<br />поисковых пайплайнов и RAG, сборке и доставке сервисов в закрытый контур.</p> <p> </p> <div><strong>Ожидаем от тебя:</strong></div> <ul> <li>Python: ООП, работа с библиотеками, умение читать чужой код.Достаточно опыта в учебных или pet-проектах;</li> <li>Git: ветки, merge request, разрешение конфликтов;</li> <li>Понимание HTTP и REST API: методы, коды ответов, JSON;</li> <li>Основы SQL;</li> <li>Уверенная работа в командной строке Linux;</li> <li>Технический английский на чтение документации.</li> </ul> <p> </p> <div><strong>Будет плюсом:</strong></div> <ul> <li>FastAPI, Pydantic, asyncio;</li> <li>Pytest;</li> <li>Docker и Docker Compose;</li> <li>GitLab CI;</li> <li>Понимание на базовом уровне, что такое LLM, эмбеддинги и векторный поиск;</li> <li>Любой практический опыт с LLM: обращение к API модели, pet-проект с RAG,</li> <li>Свой чат-бот.</li> </ul> <p> </p> <div><strong>Мы предлагаем:</strong></div> <ul> <li>Работу в комфортабельном офисе класса «А» в двух шагах от ст. м. Римская/Площадь Ильича;</li> <li>Статус аккредитованной ИТ-компании со всеми преимуществами;</li> <li>100% компенсацию больничного, дополнительные дни на отгул по болезни;</li> <li>Возможности для обучения и профессионального развития: корпоративную библиотеку, менторство, внутренние митапы по обмену опытом, практику публичных выступлений, возможность участвовать в создании контента для профессиональных сообществ;</li> <li>Программу корпоративных скидок и привилегий;</li> <li>Развитую корпоративную культуру: открытую коммуникацию, онлайн и офлайн встречи, клубы по интересам, спортивные активности и поддержку инициатив сотрудников.</li> </ul> <p><br /><em>Несмотря на быстрый рост, мы основательно подходим к подбору специалистов, поэтому нам удалось собрать профессиональную и сплоченную команду.</em><br /><br /><strong>Присоединяйся к нам!</strong></p>",
+    "inclusiveness_description": null,
+    "inclusiveness_types": [],
+    "vacancy_constructor_template": null,
+    "key_skills": [],
+    "auto_response": {
+      "accept_auto_response": false
+    },
+    "accept_handicapped": false,
+    "accept_kids": false,
+    "age_restriction": null,
+    "archived": false,
+    "specializations": [],
+    "professional_roles": [
+      {
+        "id": "165",
+        "name": "Дата-сайентист"
+      }
+    ],
+    "code": null,
+    "hidden": false,
+    "quick_responses_allowed": false,
+    "driver_license_types": [],
+    "accept_incomplete_resumes": false,
+    "employer": {
+      "id": "1885395",
+      "name": "Р-Вижн",
+      "trusted": true,
+      "alternate_url": "https://hh.ru/employer/1885395"
+    },
+    "published_at": "2026-09-18T16:41:33+0300",
+    "created_at": "2026-09-18T16:41:33+0300",
+    "initial_created_at": "2026-09-18T16:41:33+0300",
+    "has_test": true,
+    "test": {
+      "required": true
+    },
+    "alternate_url": "https://hh.ru/vacancy/137535328?tech_source=api",
+    "accept_temporary": false,
+    "languages": [],
+    "approved": true,
+    "employment_form": {
+      "id": "FULL",
+      "name": "Полная"
+    },
+    "fly_in_fly_out_duration": [],
+    "accept_labor_contract": false,
+    "civil_law_contracts": [],
+    "internship": true,
+    "night_shifts": false,
+    "work_format": [
+      {
+        "id": "REMOTE",
+        "name": "Удалённо"
+      }
+    ],
+    "work_schedule_by_days": [
+      {
+        "id": "FIVE_ON_TWO_OFF",
+        "name": "5/2"
+      }
+    ],
+    "working_hours": [
+      {
+        "id": "HOURS_8",
+        "name": "8 часов"
+      }
+    ],
+    "closed_for_applicants": false
+  },
+  "137303185": {
+    "id": "137303185",
+    "premium": false,
+    "billing_type": {
+      "id": "standard",
+      "name": "Стандарт"
+    },
+    "name": "Стажер Data scientist",
+    "response_letter_required": false,
+    "area": {
+      "id": "1",
+      "name": "Москва",
+      "url": "https://api.hh.ru/areas/1"
+    },
+    "salary": null,
+    "salary_range": null,
+    "type": {
+      "id": "open",
+      "name": "Открытая"
+    },
+    "allow_messages": false,
+    "experience": {
+      "id": "noExperience",
+      "name": "Нет опыта"
+    },
+    "department": {
+      "id": "3529-3529-it",
+      "name": "Сбер. IT"
+    },
+    "show_contacts": false,
+    "description": "<p>Центр портфельного риск-моделирования в поисках стажера в области Data Science.</p> <h3><strong>Обязанности</strong></h3> <ul> <li>участвовать в полном цикле разработки моделей по рискам розничного бизнеса: постановка задачи, сбор данных, разработка ML-модели, подготовка артефактов для внедрения</li> <li>исследовать источники данных и современные архитектуры для повышения качества работы моделей</li> <li>написание алгоритмов для целей сегментации выдач по риск-доходности</li> <li>презентация результатов исследований бизнес-заказчиками.</li> </ul> <h3><strong>Требования</strong></h3> <ul> <li>опыт разработки моделей машинного обучения (классический стек)</li> <li>знание ключевых методов и алгоритмов в области Machine Learning</li> <li>знание Python и библиотек Pandas, Scikit-learn, XGBoost/LightGBM/CatBoost, Transformers.</li> <li>навыки работы с базами данных, знание SQL, PySpark</li> <li>высокий уровень ответственности и самостоятельности</li> </ul> <p>Будет плюсом:</p> <ul> <li>опыт стажировок</li> <li>опыт с LLM и AI-агентами</li> <li>учебные знания в области розничного кредитования, портфельного управления и математики кредитных рисков.</li> </ul> <h3><strong>Условия</strong></h3> <ul> <li>оплачиваемая стажировка</li> <li>возможность выбрать удобный график – офис или гибрид (локация: м. Кутузовская)</li> <li>корпоративный спортзал и зоны отдых.</li> </ul>",
+    "inclusiveness_description": null,
+    "inclusiveness_types": [],
+    "vacancy_constructor_template": null,
+    "key_skills": [],
+    "auto_response": {
+      "accept_auto_response": true
+    },
+    "accept_handicapped": false,
+    "accept_kids": false,
+    "age_restriction": null,
+    "archived": false,
+    "specializations": [],
+    "professional_roles": [
+      {
+        "id": "165",
+        "name": "Дата-сайентист"
+      }
+    ],
+    "code": null,
+    "hidden": false,
+    "quick_responses_allowed": false,
+    "driver_license_types": [],
+    "accept_incomplete_resumes": false,
+    "employer": {
+      "id": "3529",
+      "name": "СБЕР",
+      "trusted": true,
+      "alternate_url": "https://hh.ru/employer/3529"
+    },
+    "published_at": "2026-09-14T11:55:25+0300",
+    "created_at": "2026-09-14T11:55:25+0300",
+    "initial_created_at": "2026-09-14T11:55:25+0300",
+    "has_test": false,
+    "test": null,
+    "alternate_url": "https://hh.ru/vacancy/137303185?tech_source=api",
+    "accept_temporary": false,
+    "languages": [],
+    "approved": true,
+    "employment_form": {
+      "id": "FULL",
+      "name": "Полная"
+    },
+    "fly_in_fly_out_duration": [],
+    "accept_labor_contract": false,
+    "civil_law_contracts": [],
+    "internship": false,
+    "night_shifts": false,
+    "work_format": [
+      {
+        "id": "ON_SITE",
+        "name": "На месте работодателя"
+      }
+    ],
+    "work_schedule_by_days": [
+      {
+        "id": "FIVE_ON_TWO_OFF",
+        "name": "5/2"
+      }
+    ],
+    "working_hours": [
+      {
+        "id": "HOURS_8",
+        "name": "8 часов"
+      }
+    ],
+    "show_logo_in_search": true,
+    "closed_for_applicants": false
+  },
+  "137442819": {
+    "id": "137442819",
+    "premium": false,
+    "billing_type": {
+      "id": "standard",
+      "name": "Стандарт"
+    },
+    "name": "Стажер-продуктовый маркетолог (Защитник)",
+    "response_letter_required": false,
+    "area": {
+      "id": "1",
+      "name": "Москва",
+      "url": "https://api.hh.ru/areas/1"
+    },
+    "salary": {
+      "from": 70000,
+      "to": 70000,
+      "currency": "RUR",
+      "gross": true
+    },
+    "salary_range": {
+      "from": 70000,
+      "to": 70000,
+      "currency": "RUR",
+      "gross": true,
+      "mode": {
+        "id": "MONTH",
+        "name": "За месяц"
+      },
+      "frequency": {
+        "id": "TWICE_PER_MONTH",
+        "name": "Два раза в месяц"
+      }
+    },
+    "type": {
+      "id": "open",
+      "name": "Открытая"
+    },
+    "allow_messages": false,
+    "experience": {
+      "id": "noExperience",
+      "name": "Нет опыта"
+    },
+    "department": {
+      "id": "mts-3776-stud",
+      "name": "«МТС», Стажировки"
+    },
+    "show_contacts": false,
+    "description": "<p>«Защитник» — флагманский продукт, который в реальном времени с помощью Big Data и AI защищает миллионы пользователей от спама и мошенничества. В основе — большие данные и ML-модели, которые ежедневно учатся на новых угрозах. Мы ищем стажера в центр продуктового маркетинга, который получит практический опыт работы в крупнейшем телеком операторе, освоит необходимые инструменты и сможет вырасти до полноценного продуктового маркетолога!</p> <p><strong>Чем предстоит заниматься:</strong></p> <ul> <li>проводить benchmark-исследования по продуктам и услугам конкурентов;</li> <li>генерировать новые идеи и внедрять их в МТС;</li> <li>планировать и запускать рекламные кампании в соцсетях и контексте, создавать для них контент;</li> <li>работать с агентствами и внутренними заказчиками: ставить задачи, оценивать идеи, обсуждать брифы и согласовывать рекламные материалы;</li> <li>развивать и сегментировать абонентскую базу;</li> <li>разрабатывать performance digital-рекламу;</li> <li>помогать готовить аналитические материалы: выдвигать гипотезы, проверять их, визуализировать результаты в презентациях.</li> </ul> <p><strong>Что ждем от тебя:</strong></p> <ul> <li>ты – в том числе студент или выпускник профильного направления (маркетинг, аналитика или экономика);</li> <li>делаешь красивые и понятные презентации в PowerPoint;</li> <li>умеешь работать с рекламными кабинетами Google Ads, FB Business, Яндекс. Директ, MyTarget и т.д.;</li> <li>знаешь, как работает Google Analytics, AppMetrica, AppsFlyeаr, любознателен и хочешь развиваться в маркетинге;</li> <li>умеешь находить оригинальные решения и не боишься их предлагать; хорошо ориентируешься в трендах;</li> <li>знание SQL, развитая насмотренность – будут плюсом.</li> </ul> <p><strong>Что мы предлагаем:</strong></p> <ul> <li>график работы 40 часов в неделю;</li> <li>развитие в командах профессионалов и опытный наставник, готовый делиться опытом;</li> <li>мобильная связь за счет компании;</li> <li>подписка на онлайн-кинотеатр KION, сервис МТС Музыка, книжный сервис Строки от МТС, безлимитные мессенджеры и соцсети;</li> <li>специальные предложения от партнеров и скидки от продуктов экосистемы МТС;</li> <li>непрерывное развитие — доступ к курсам и вебинарам корпоративного университета и онлайн-библиотеке.</li> </ul>",
+    "inclusiveness_description": null,
+    "inclusiveness_types": [],
+    "vacancy_constructor_template": null,
+    "key_skills": [
+      {
+        "name": "продуктовый маркетинг"
+      },
+      {
+        "name": "Маркетинговые исследования"
+      },
+      {
+        "name": "Работа с большим объемом информации"
+      },
+      {
+        "name": "Подготовка презентаций"
+      },
+      {
+        "name": "Точность и внимательность к деталям"
+      },
+      {
+        "name": "Аналитика"
+      }
+    ],
+    "auto_response": {
+      "accept_auto_response": false
+    },
+    "accept_handicapped": false,
+    "accept_kids": false,
+    "age_restriction": null,
+    "archived": false,
+    "specializations": [],
+    "professional_roles": [
+      {
+        "id": "163",
+        "name": "Маркетолог-аналитик"
+      }
+    ],
+    "code": null,
+    "hidden": false,
+    "quick_responses_allowed": false,
+    "driver_license_types": [],
+    "accept_incomplete_resumes": false,
+    "employer": {
+      "id": "3776",
+      "name": "МТС",
+      "trusted": true,
+      "alternate_url": "https://hh.ru/employer/3776"
+    },
+    "published_at": "2026-09-17T12:06:31+0300",
+    "created_at": "2026-09-17T12:06:31+0300",
+    "initial_created_at": "2026-09-16T15:36:01+0300",
+    "has_test": true,
+    "test": {
+      "required": true
+    },
+    "alternate_url": "https://hh.ru/vacancy/137442819?tech_source=api",
+    "accept_temporary": false,
+    "languages": [],
+    "approved": true,
+    "employment_form": {
+      "id": "FULL",
+      "name": "Полная"
+    },
+    "fly_in_fly_out_duration": [],
+    "accept_labor_contract": false,
+    "civil_law_contracts": [],
+    "internship": true,
+    "night_shifts": false,
+    "work_format": [
+      {
+        "id": "HYBRID",
+        "name": "Гибрид"
+      }
+    ],
+    "work_schedule_by_days": [
+      {
+        "id": "FIVE_ON_TWO_OFF",
+        "name": "5/2"
+      }
+    ],
+    "working_hours": [
+      {
+        "id": "HOURS_8",
+        "name": "8 часов"
+      }
+    ],
+    "show_logo_in_search": true,
+    "closed_for_applicants": false
+  },
+  "136903775": {
+    "id": "136903775",
+    "premium": false,
+    "billing_type": {
+      "id": "standard",
+      "name": "Стандарт"
+    },
+    "name": "Стажер (аналитика)",
+    "response_letter_required": false,
+    "area": {
+      "id": "1",
+      "name": "Москва",
+      "url": "https://api.hh.ru/areas/1"
+    },
+    "salary": {
+      "from": null,
+      "to": 60000,
+      "currency": "RUR",
+      "gross": true
+    },
+    "salary_range": {
+      "from": null,
+      "to": 60000,
+      "currency": "RUR",
+      "gross": true,
+      "mode": {
+        "id": "MONTH",
+        "name": "За месяц"
+      },
+      "frequency": null
+    },
+    "type": {
+      "id": "open",
+      "name": "Открытая"
+    },
+    "allow_messages": true,
+    "experience": {
+      "id": "noExperience",
+      "name": "Нет опыта"
+    },
+    "department": {
+      "id": "2460946-2460946-office",
+      "name": "Самокат. Офис"
+    },
+    "show_contacts": false,
+    "description": "<p>Ищешь возможность начать карьеру в крупной e-commerce компании и хочешь попробовать себя в рекламе или продажах, работая с реальными задачами и получая обратную связь от опытных наставников, тогда присоединяйся к нашей 6-месячной стажёрской программе <strong>в команде управления цепочками поставок!</strong></p> <p><strong>Что нужно будет делать:</strong></p> <ul> <li> <p>Преобразование и подготовка данных для анализа;</p> </li> <li> <p>Обработка данных с использованием ML- моделей;</p> </li> <li> <p>Интерпретация результатов, подготовка шаблонов загрузки;<br /></p> </li> <li> <p>Подготовка таблиц и материалов для презентаций руководителю.</p> </li> </ul> <p><strong>Ты идеально нам подходишь, если ты:</strong></p> <ul> <li> <p>Получаешь высшее образование или уже выпускник по профилю экономики, логистики, товародвижения;</p> </li> <li> <p>С опытом работы от 0 до 1 года (стажировки, подработки, волонтёрские проекты - тоже в счёт);</p> </li> <li> <p>Готов работать в офисном формате 40 часов в неделю;</p> </li> <li> <p>Excel: Уверенный пользователь (сводные таблицы, формулы, работа с большими данными) — обязательно;</p> </li> <li> <p>Понимание базовых метрик: маржинальность, наценка, оборачиваемость, входная цена, артикул;</p> </li> <li> <p>Желательно: понимание процессов товародвижения, списаний, ценообразования.</p> </li> </ul> <p><strong>Что мы предлагаем:</strong></p> <ul> <li>Официальное оформление (срочный трудовой договор на 6 месяцев);</li> <li>Комфортные условия работы;</li> <li>Реальные задачи в ключевом направлении;</li> <li>Наставника - опытного коллегу, который поможет войти в курс дела и даст обратную связь:</li> <li>Погружение в экосистему крупного e-commerce бизнеса;</li> <li>И возможность остаться в штате после успешного прохождения стажировки.</li> </ul> <p><strong>Как попасть к нам:</strong></p> <ul> <li>Откликнись на вакансию и напиши краткое сопроводительное письмо, где расскажешь немного о себе: где учишься/учился(ась), какой опыт уже был и почему тебе интересна работа с рекламными продуктами и клиентскими задачами;</li> <li>Пройди собеседование с hr и руководителем направления;</li> <li>Получи оффер и присоединяйся к команде!Стажер (коммерческая аналитика)</li> </ul>",
+    "inclusiveness_description": null,
+    "inclusiveness_types": [],
+    "vacancy_constructor_template": null,
+    "key_skills": [],
+    "auto_response": {
+      "accept_auto_response": true
+    },
+    "accept_handicapped": false,
+    "accept_kids": false,
+    "age_restriction": null,
+    "archived": false,
+    "specializations": [],
+    "professional_roles": [
+      {
+        "id": "66",
+        "name": "Менеджер по закупкам"
+      }
+    ],
+    "code": null,
+    "hidden": false,
+    "quick_responses_allowed": false,
+    "driver_license_types": [],
+    "accept_incomplete_resumes": false,
+    "employer": {
+      "id": "2460946",
+      "name": "Самокат (ООО Умный ритейл)",
+      "trusted": true,
+      "alternate_url": "https://hh.ru/employer/2460946"
+    },
+    "published_at": "2026-09-08T16:10:26+0300",
+    "created_at": "2026-09-08T16:10:26+0300",
+    "initial_created_at": "2026-09-02T17:02:03+0300",
+    "has_test": true,
+    "test": {
+      "required": true
+    },
+    "alternate_url": "https://hh.ru/vacancy/136903775?tech_source=api",
+    "accept_temporary": false,
+    "languages": [],
+    "approved": true,
+    "employment_form": {
+      "id": "FULL",
+      "name": "Полная"
+    },
+    "fly_in_fly_out_duration": [],
+    "accept_labor_contract": false,
+    "civil_law_contracts": [],
+    "internship": false,
+    "night_shifts": false,
+    "work_format": [
+      {
+        "id": "ON_SITE",
+        "name": "На месте работодателя"
+      }
+    ],
+    "work_schedule_by_days": [
+      {
+        "id": "FIVE_ON_TWO_OFF",
+        "name": "5/2"
+      }
+    ],
+    "working_hours": [
+      {
+        "id": "HOURS_8",
+        "name": "8 часов"
+      }
+    ],
+    "show_logo_in_search": true,
+    "closed_for_applicants": false
+  },
+  "137740377": {
+    "id": "137740377",
+    "premium": false,
+    "billing_type": {
+      "id": "standard",
+      "name": "Стандарт"
+    },
+    "name": "Стажер System Analyst",
+    "response_letter_required": false,
+    "area": {
+      "id": "1",
+      "name": "Москва",
+      "url": "https://api.hh.ru/areas/1"
+    },
+    "salary": null,
+    "salary_range": null,
+    "type": {
+      "id": "open",
+      "name": "Открытая"
+    },
+    "allow_messages": false,
+    "experience": {
+      "id": "noExperience",
+      "name": "Нет опыта"
+    },
+    "department": {
+      "id": "3529-3529-kiber",
+      "name": "Сбер. Кибербезопасность"
+    },
+    "show_contacts": false,
+    "description": "<p>Мы - команда, создающая <strong>комплексную систему противодействия мошенничеству</strong> и обеспечивающая online/offline безопасность миллионов клиентов банка 24/7/365, предоставляя инструменты <strong>собственной разработки</strong> для:</p> <ul> <li>Построения графа связей (позволяет проанализировать не только объекты и их свойства, но также их связи с другими объектами различных уровней и характеристик и применяется для получения дополнительных знаний об объекте за счет извлечения знаний о его окружении, выявления наиболее значимой информации, центров влияния, групп связанных объектов, цепочек)</li> <li>Геопространственой аналитики: анализа локаций, построения маршрутов и тепловых карт</li> <li>Выявления и анализа попыток мошенничества и иных отклонений</li> <li>Портфеля технологичных сервисов накопления и обработки больших объемов данных со сложной структурой</li> </ul> <p>Мы находимся на передовой технологических инноваций, соединяя возможности ИИ, современные технологии и потребности общества. Наше направление AI-трансформации — это стратегическая инициатива по интеграции LLM-агентов и мультиагентных систем в собственную аналитическую платформу:</p> <ul> <li>AI-решения для глубокого анализа данных</li> <li>Набор AI Tools, дающих агентам доступ к инструментам и сервисам платформы</li> <li>Собственная no-code/low-code платформа для оркестрации AI-агентов и автоматизации рабочих процессов</li> <li>Интеграция с внутренними LLM-шлюзами и средами исполнения агентов</li> <li>RAG-системы для работы с корпоративными базами знаний и методологиями</li> <li>Наш передовой технологический стек:</li> <li>Storage - Hadoop, Cassandra, ClickHouse, Elasticsearch, FastGraph, PostgreSQL</li> <li>Big Data Engineering- Scala, Spark, Flink</li> <li>Вackend - GO (GIN), Scala (ZIO), Kubernetes (OpenShift, DropApp)</li> <li>Fronted - React, Redux (Redux ToolKit, RTK Query), Typescript, jest. Библиотеки: react-force-graph, leaflet</li> <li>AI - Python (LangChain, LangGraph, Harness), GO (mcp-go), Typescript (no code platform), ai-coding (gigacode cli, claude, codex), RAG\\GraphRag (PostgreSQL, Elasticsearch, Qdrant)</li> <li>QA - Java, TestNG, Selenium, Maven, Allure</li> <li>DevOps - Docker, Helm, Jenkins</li> </ul> <h3><strong>Обязанности</strong></h3> <ul> <li>Проектирование и анализ архитектуры технического решения совместно с командой разработки</li> <li>Разработка и согласование концепции, проектной документации и технической документации, описание API, ведение документации в Confluence</li> <li>Анализ источников данных, разработка моделей данных, логики алгоритмов и интеграций</li> <li>Документирование и обеспечение соблюдения правил сбора, хранения и использования данных</li> <li>Участие в полном цикле разработки и внедрения</li> </ul> <h3><strong>Требования</strong></h3> <ul> <li>в том числе Статус студента 3-5 курса, готовность выделять на стажировку минимум 30 часов в неделю в офисном формате</li> <li>Понимание жизненного цикла разработки ПО и роли системного аналитика в данном процессе</li> <li>Умение быстро погружаться в исследуемую область</li> <li>Навыки интеграции решений на основе ML/AI в реальные производственные системы</li> <li>Базовые знания SQL: понимание принципов реляционных баз данных, умение писать SQL-запросы различной сложности</li> <li>Знание форматов JSON/XML и навыки проектирование REST API</li> <li>Способность обрабатывать и структурировать большой объем сложной информации, доступно и наглядно ее презентовать</li> <li>Сбор, анализ и документирование бизнес-требований, описание use case, генерация идей, проработка технических решений, интеграционных взаимодействий</li> <li>Коммуникативные навыки, достаточные для выстраивания конструктивного взаимодействия со смежными подразделениями и внутри команды</li> </ul> <p>Будет плюсом</p> <ul> <li>Опыт проектирования логической и физической моделей данных</li> <li>Понимание ключевых алгоритмов и подходов в AI/GenAI (LLM, vector search, NLP, context engineering и др.)</li> <li>Понимание архитектуры AI/GenAI решений, LLM, RAG, BI и DataOps</li> <li>Владение инструментами Big Data (Hadoop, AirFlow, Spark, Kafka)</li> <li>Понимание принципов работы NoSQL баз данных (Cassandra, ClickHouse, ElasticSearch, Qdrant, Neo4j)</li> <li>Опыт проектирования логической и физической моделей данных</li> </ul> <h3><strong>Условия</strong></h3> <ul> <li>Экспертизу на стыке больших данных, backend- и frontend- разработки, AI и безопасности, которую невозможно получить в типовых IT-проектах</li> <li>Среда для обмена знаниями – высокая экспертиза внутри команды</li> <li>Сплоченную команду, работающую над общими задачами и умеющая хорошо отдыхать</li> <li>Нашу культуру создают сами сотрудники – мы их слышим и помогаем создавать и поддерживать корпоративные комьюнити по интересам</li> <li>Стабильную заработную плату и годовой бонус</li> <li>Современный IT-офис вблизи Москва-Сити в пяти минутах от метро &quot;Кутузовская&quot;, с фитнес залом</li> </ul>",
+    "inclusiveness_description": null,
+    "inclusiveness_types": [],
+    "vacancy_constructor_template": null,
+    "key_skills": [],
+    "auto_response": {
+      "accept_auto_response": true
+    },
+    "accept_handicapped": false,
+    "accept_kids": false,
+    "age_restriction": null,
+    "archived": false,
+    "specializations": [],
+    "professional_roles": [
+      {
+        "id": "148",
+        "name": "Системный аналитик"
+      }
+    ],
+    "code": null,
+    "hidden": false,
+    "quick_responses_allowed": false,
+    "driver_license_types": [],
+    "accept_incomplete_resumes": false,
+    "employer": {
+      "id": "3529",
+      "name": "СБЕР",
+      "trusted": true,
+      "alternate_url": "https://hh.ru/employer/3529"
+    },
+    "published_at": "2026-09-24T12:23:52+0300",
+    "created_at": "2026-09-24T12:23:52+0300",
+    "initial_created_at": "2026-09-24T12:23:52+0300",
+    "has_test": false,
+    "test": null,
+    "alternate_url": "https://hh.ru/vacancy/137740377?tech_source=api",
+    "accept_temporary": false,
+    "languages": [],
+    "approved": true,
+    "employment_form": {
+      "id": "PART",
+      "name": "Частичная"
+    },
+    "fly_in_fly_out_duration": [],
+    "accept_labor_contract": false,
+    "civil_law_contracts": [],
+    "internship": false,
+    "night_shifts": false,
+    "work_format": [
+      {
+        "id": "ON_SITE",
+        "name": "На месте работодателя"
+      }
+    ],
+    "work_schedule_by_days": [
+      {
+        "id": "FIVE_ON_TWO_OFF",
+        "name": "5/2"
+      }
+    ],
+    "working_hours": [
+      {
+        "id": "HOURS_8",
+        "name": "8 часов"
+      }
+    ],
+    "show_logo_in_search": true,
+    "closed_for_applicants": false
+  },
+  "137259991": {
+    "id": "137259991",
+    "premium": false,
+    "billing_type": {
+      "id": "standard",
+      "name": "Стандарт"
+    },
+    "name": "Партнер по управлению персоналом – стажер",
+    "response_letter_required": false,
+    "area": {
+      "id": "1",
+      "name": "Москва",
+      "url": "https://api.hh.ru/areas/1"
+    },
+    "salary": null,
+    "salary_range": null,
+    "type": {
+      "id": "open",
+      "name": "Открытая"
+    },
+    "allow_messages": true,
+    "experience": {
+      "id": "noExperience",
+      "name": "Нет опыта"
+    },
+    "department": null,
+    "show_contacts": false,
+    "description": "<p><strong>РТЛабс</strong> создаёт и развивает масштабные цифровые сервисы Госуслуг — портал, мобильные приложения, социально значимые услуги, системы электронного правительства. Наша команда делает жизнь миллионов пользователей проще и позволяет решать сложные жизненные вопросы в несколько кликов.<br /><br /><strong>Что ты будешь делать </strong><br /><br />Мы ищем стажера, который будет не просто выполнять рутинные задачи, а принесет нам свежие идеи и взгляды, дополнив их работой с нашумевшими инструментами ML.<br />На период стажировки (6 месяцев) ты будешь решать четыре ключевые задачи:</p> <p> </p> <ul> <li>Операционная поддержка команды:</li> </ul> <ol> <li>Помощь в закрытии текущих задач HR-специалистов (координация и протоколирование встреч, написание информационных постов и др.)</li> <li>Выполнение точечных поручений: подготовка отчетов, работа с внутренними системами</li> </ol> <ul> <li>Участие в разработке и реализации активностей внутри Блоков развития:</li> </ul> <ol> <li>Сбор потребностей, работа с аналитикой</li> <li>Реализация проекта (от генерации идеи до внедрения)</li> </ol> <ul> <li>Самостоятельный проект &quot;Карта компетенций&quot;:</li> </ul> <ol> <li>Проведёшь исследование реальных должностных обязанностей наших HR-специалистов</li> <li>Разработаешь матрицу компетенций для HR-партнёров (разобьёшь навыки по уровням: Junior, Middle, Middle+, Senior)</li> </ol> <ul> <li>Проработка HR ИИ-ассистента;</li> </ul> <ol> <li>Сбор метрик для базы знаний</li> <li>Генерация текста и контента для ИИ-ассистента</li> </ol> <p><strong>Мы ждём, что ты имеешь</strong></p> <ul> <li>Интерес к HR-сфере и аналитике</li> <li>Умение работать с большим объёмом информации и структурировать её (MS Excel на хорошем уровне)</li> <li>Готовность «копаться» в регламентах и задачах, чтобы понять, как всё устроено изнутри</li> <li>Базовое умение формулировать мысли письменно (посты, тексты, промты)</li> <li>Навыки работы с нейросетями и сетями GPT;</li> <li>Коммуникабельность, гибкость, идейность</li> <li>Обучающиеся бакалавриата или магистратуры технических специальностей</li> </ul> <p><strong>Что мы предлагаем:</strong></p> <ul> <li>30 или 40 часовая рабочая неделя</li> <li>Формат работы офисный или гибридный</li> <li>Срочный трудовой договор на 6 месяцев</li> <li>Гибкое начало рабочего дня</li> </ul>",
+    "inclusiveness_description": null,
+    "inclusiveness_types": [],
+    "vacancy_constructor_template": null,
+    "key_skills": [
+      {
+        "name": "Деловая коммуникация"
+      },
+      {
+        "name": "Внутренние коммуникации"
+      }
+    ],
+    "auto_response": {
+      "accept_auto_response": false
+    },
+    "accept_handicapped": false,
+    "accept_kids": false,
+    "age_restriction": null,
+    "archived": false,
+    "specializations": [],
+    "professional_roles": [
+      {
+        "id": "69",
+        "name": "Менеджер по персоналу"
+      }
+    ],
+    "code": null,
+    "hidden": false,
+    "quick_responses_allowed": false,
+    "driver_license_types": [],
+    "accept_incomplete_resumes": false,
+    "employer": {
+      "id": "894410",
+      "name": "РТЛабс",
+      "trusted": true,
+      "alternate_url": "https://hh.ru/employer/894410"
+    },
+    "published_at": "2026-09-24T19:06:07+0300",
+    "created_at": "2026-09-24T19:06:07+0300",
+    "initial_created_at": "2026-09-11T19:01:14+0300",
+    "has_test": false,
+    "test": null,
+    "alternate_url": "https://hh.ru/vacancy/137259991?tech_source=api",
+    "accept_temporary": false,
+    "languages": [],
+    "approved": true,
+    "employment_form": {
+      "id": "FULL",
+      "name": "Полная"
+    },
+    "fly_in_fly_out_duration": [],
+    "accept_labor_contract": false,
+    "civil_law_contracts": [],
+    "internship": true,
+    "night_shifts": false,
+    "work_format": [
+      {
+        "id": "ON_SITE",
+        "name": "На месте работодателя"
+      }
+    ],
+    "work_schedule_by_days": [
+      {
+        "id": "FIVE_ON_TWO_OFF",
+        "name": "5/2"
+      }
+    ],
+    "working_hours": [
+      {
+        "id": "HOURS_8",
+        "name": "8 часов"
+      }
+    ],
+    "show_logo_in_search": true,
+    "closed_for_applicants": false
+  },
+  "137712839": {
+    "id": "137712839",
+    "premium": false,
+    "billing_type": {
+      "id": "standard",
+      "name": "Стандарт"
+    },
+    "name": "Middle/Senior NLP/PLP Researcher (GigaCode R&D)",
+    "response_letter_required": false,
+    "area": {
+      "id": "1",
+      "name": "Москва",
+      "url": "https://api.hh.ru/areas/1"
+    },
+    "salary": null,
+    "salary_range": null,
+    "type": {
+      "id": "open",
+      "name": "Открытая"
+    },
+    "allow_messages": false,
+    "experience": {
+      "id": "between3And6",
+      "name": "От 3 до 6 лет"
+    },
+    "department": {
+      "id": "3529-3529-it",
+      "name": "Сбер. IT"
+    },
+    "show_contacts": false,
+    "description": "<p>Мы — команда GigaCode, разрабатываем и развиваем AI-ассистента для разработчика. Целимся конкурировать с Copilot, Cursor, Windsurf и прочими инструментами.</p> <p>Обучаем новые SOTA LLM по работе с кодом, как на уровне подсказок в IDE, так и на уровне редактирования целого проекта. Мы R&amp;D команда, поэтому мы не только заимствуем лучшие решения из публикаций, но и ведем собственные исследования, публикуем статьи, open-source инструменты и датасеты.</p> <p>Наши основные направления: претрейн кодовых моделей с нуля, пост-тренировка моделей (SFT/DPO/GRPO), обучение рассуждающих моделей, дообучение работе в агентном режиме и использованию инструментов, поиск в коде по текстовым запросам, ускорение инференса, дизайн бенчмарков, автоматическое создание датасетов проверяемых задач.</p> <p>Обучаем модели на картах H100, на кластере Кристофари, у нас много свободы в использовании GPU.</p> <h3><strong>Обязанности</strong></h3> <ul> <li>дизайн экспериментов, формулировка гипотез для улучшения NLP/PLP моделей и алгоритмов, планирование исследовательских экспериментов с выводами</li> <li>проведение экспериментов, написание кода, подготовка датасетов и бенчмарков, проведение замеров и анализ результатов</li> <li>обучение моделей на кластере, включая обучение моделей с нуля и дообучение опенсорс моделей</li> <li>взаимодействие с прод-командой для интеграции моделей и алгоритмов в продакшн. Взаимодействуем с командой инженеров SberWorks</li> <li>ориентированность на SOTA, читать пейперы, быть в курсе последних исследований, предлагать новые смелые подходы и направления.</li> </ul> <h3><strong>Требования</strong></h3> <ul> <li>хорошие теоретические знания в DL, с упором в современный NLP и трансформеры</li> <li>умение формулировать эксперименты с научной строгостью, обосновывать их, проводить самостоятельно и делать выводы</li> <li>опыт обучения трансформеров</li> <li>опыт распределенного обучения моделей (deepspeed, fsdp, torch.distributed, accelerate)</li> <li>знание стандартных библиотек для DL и NLP (PyTorch и библиотеки Huggingface)</li> <li>увлеченность NLP/PLP и DL</li> <li>опыт менторинга стажеров и младших коллег.</li> </ul> <p><strong>Будет плюсом:</strong></p> <ul> <li>опыт работы на похожей позиции</li> <li>участие в соревнованиях по ML</li> <li>сабмиты на лидербордах по NLP/PLP</li> <li>публикации уровня А/A*, Q1</li> <li>обучение моделей на кластере</li> <li>опыт управления командой исследователей.</li> </ul> <h3><strong>Условия</strong></h3> <ul> <li>комфортный современный офис рядом с м. Кутузовская</li> <li>гибридный формат работы</li> <li>ежегодный пересмотр зарплаты, годовая премия</li> <li>корпоративный спортзал и зоны отдыха</li> <li>система обучения для профессионального и карьерного развития</li> <li>расширенный полис ДМС с первого дня работы и страхование для семьи</li> <li>программа ипотеки для сотрудников</li> <li>бесплатная подписка СберПрайм+, скидки на продукты компаний-партнеров</li> <li>вознаграждение за рекомендацию друзей в команду Сбера.</li> </ul>",
+    "inclusiveness_description": null,
+    "inclusiveness_types": [],
+    "vacancy_constructor_template": null,
+    "key_skills": [],
+    "auto_response": {
+      "accept_auto_response": true
+    },
+    "accept_handicapped": false,
+    "accept_kids": false,
+    "age_restriction": null,
+    "archived": false,
+    "specializations": [],
+    "professional_roles": [
+      {
+        "id": "165",
+        "name": "Дата-сайентист"
+      }
+    ],
+    "code": null,
+    "hidden": false,
+    "quick_responses_allowed": false,
+    "driver_license_types": [],
+    "accept_incomplete_resumes": false,
+    "employer": {
+      "id": "3529",
+      "name": "СБЕР",
+      "trusted": true,
+      "alternate_url": "https://hh.ru/employer/3529"
+    },
+    "published_at": "2026-09-23T16:51:50+0300",
+    "created_at": "2026-09-23T16:51:50+0300",
+    "initial_created_at": "2026-09-23T16:51:50+0300",
+    "has_test": false,
+    "test": null,
+    "alternate_url": "https://hh.ru/vacancy/137712839?tech_source=api",
+    "accept_temporary": false,
+    "languages": [],
+    "approved": true,
+    "employment_form": {
+      "id": "FULL",
+      "name": "Полная"
+    },
+    "fly_in_fly_out_duration": [],
+    "accept_labor_contract": false,
+    "civil_law_contracts": [],
+    "internship": false,
+    "night_shifts": false,
+    "work_format": [
+      {
+        "id": "ON_SITE",
+        "name": "На месте работодателя"
+      }
+    ],
+    "work_schedule_by_days": [
+      {
+        "id": "FIVE_ON_TWO_OFF",
+        "name": "5/2"
+      }
+    ],
+    "working_hours": [
+      {
+        "id": "HOURS_8",
+        "name": "8 часов"
+      }
+    ],
+    "show_logo_in_search": true,
+    "closed_for_applicants": false
+  },
+  "137744000": {
+    "id": "137744000",
+    "premium": false,
+    "billing_type": {
+      "id": "standard",
+      "name": "Стандарт"
+    },
+    "name": "International Talent Sourcer / Researcher / Analyst",
+    "response_letter_required": false,
+    "area": {
+      "id": "1",
+      "name": "Москва",
+      "url": "https://api.hh.ru/areas/1"
+    },
+    "salary": {
+      "from": 1000,
+      "to": null,
+      "currency": "USD",
+      "gross": false
+    },
+    "salary_range": {
+      "from": 1000,
+      "to": null,
+      "currency": "USD",
+      "gross": false,
+      "mode": {
+        "id": "MONTH",
+        "name": "За месяц"
+      },
+      "frequency": {
+        "id": "WEEKLY",
+        "name": "Раз в неделю"
+      }
+    },
+    "type": {
+      "id": "open",
+      "name": "Открытая"
+    },
+    "allow_messages": true,
+    "experience": {
+      "id": "between1And3",
+      "name": "От 1 года до 3 лет"
+    },
+    "department": null,
+    "show_contacts": false,
+    "description": "<p>Мы — международный финтех-стартап, который создаёт и развивает платёжные и digital-продукты для зарубежных рынков. Сейчас мы активно растем и ищем специалистов с международным опытом — сотрудников из компаний США, Канады, Австралии и других Tier 1 стран.</p> <p> </p> <p>В связи с этим ищем International Talent Sourcer, который умеет находить сильных специалистов на зарубежном рынке. Нам нужен человек, который не просто работает с входящими откликами, а сильный researcher/sourcer, способный разобраться в новой индустрии, искать нужные компании и людей через различные каналы поиска и самостоятельно выстраивать стратегию коммуникации.</p> <p> </p> <p> </p> <p><strong>Чем предстоит заниматься</strong></p> <p>— Искать специалистов на международном рынке: США, Канада, Австралия, Европа</p> <p>— Искать специалистов из конкретных компаний, индустрий и команд под задачи бизнеса</p> <p>— Работать с LinkedIn, Google/X-Ray Search, профессиональными сообществами, базами и другими международными источниками</p> <p>— Использовать Boolean Search и другие инструменты для холодного поиска</p> <p>— Искать контакты кандидатов и выстраивать cold outreach через LinkedIn, email и другие каналы</p> <p>— Проводить первичную квалификацию кандидатов по релевантности опыта, seniority и соответствие основным требованиям позиции</p> <p>— Анализировать эффективность каналов и поисковых запросов, тестировать новые подходы к сорсингу</p> <p> </p> <p> </p> <p> </p> <p><strong>Что для нас важно</strong></p> <p>— Опыт работы в должности Sourcer / Talent Sourcer / Researcher / Recruiter / Analyst от 1 года</p> <p>— Практический опыт поиска кандидатов за пределами СНГ, желательно США, Канада, UK, Австралия и Европа</p> <p>— Наличие прогретого аккаунта и уверенная работа в LinkedIn</p> <p>— Хорошее владение Boolean Search и X-Ray Search</p> <p>— Опыт холодного поиска и понимание, как получать ответы от кандидатов, которые сейчас не в поиске или уже работают</p> <p>— Английский язык B2 и выше для самостоятельного изучения англоязычных профилей и ведения письменной коммуникации с кандидатами</p> <p>— Самостоятельность, системность и ориентация на результат</p> <p>— Опыт поиска специалистов в FinTech / Payments / Banking / SaaS / Consumer Tech – как преимущество</p> <p> </p> <p> </p> <p><strong>Что предлагаем</strong></p> <p>— Удаленный формат работы в графике 5/2<br />— Оплата: оклад от 700$ + KPI + бонусы</p> <p>— Разноплановые поисковые задачи: от ML/AI-инженеров до специалистов международных FinTech-компаний и руководителей направлений</p> <p>— Доступ к необходимым sourcing-инструментам и площадкам</p> <p>— Минимум бюрократии и возможность самостоятельно тестировать новые стратегии поиска</p> <p>— Возможность карьерного роста в сторону Senior Sourcer / International Recruiter / Talent Intelligence / Executive Search</p>",
+    "inclusiveness_description": null,
+    "inclusiveness_types": [],
+    "vacancy_constructor_template": null,
+    "key_skills": [],
+    "auto_response": {
+      "accept_auto_response": true
+    },
+    "accept_handicapped": false,
+    "accept_kids": false,
+    "age_restriction": null,
+    "archived": false,
+    "specializations": [],
+    "professional_roles": [
+      {
+        "id": "69",
+        "name": "Менеджер по персоналу"
+      }
+    ],
+    "code": null,
+    "hidden": false,
+    "quick_responses_allowed": false,
+    "driver_license_types": [],
+    "accept_incomplete_resumes": false,
+    "employer": {
+      "id": "12513568",
+      "name": "Фетисов Павел Александрович",
+      "trusted": true,
+      "alternate_url": "https://hh.ru/employer/12513568"
+    },
+    "published_at": "2026-09-24T13:14:49+0300",
+    "created_at": "2026-09-24T13:14:49+0300",
+    "initial_created_at": "2026-09-24T13:14:49+0300",
+    "has_test": false,
+    "test": null,
+    "alternate_url": "https://hh.ru/vacancy/137744000?tech_source=api",
+    "accept_temporary": false,
+    "languages": [],
+    "approved": true,
+    "employment_form": {
+      "id": "FULL",
+      "name": "Полная"
+    },
+    "fly_in_fly_out_duration": [],
+    "accept_labor_contract": false,
+    "civil_law_contracts": [],
+    "internship": false,
+    "night_shifts": false,
+    "work_format": [
+      {
+        "id": "REMOTE",
+        "name": "Удалённо"
+      }
+    ],
+    "work_schedule_by_days": [
+      {
+        "id": "FIVE_ON_TWO_OFF",
+        "name": "5/2"
+      }
+    ],
+    "working_hours": [
+      {
+        "id": "HOURS_8",
+        "name": "8 часов"
+      }
+    ],
+    "closed_for_applicants": false
+  },
+  "136554010": {
+    "id": "136554010",
+    "premium": false,
+    "billing_type": {
+      "id": "standard",
+      "name": "Стандарт"
+    },
+    "name": "Старший инженер по информационной безопасности, Группа безопасности приложений",
+    "response_letter_required": false,
+    "area": {
+      "id": "1",
+      "name": "Москва",
+      "url": "https://api.hh.ru/areas/1"
+    },
+    "salary": null,
+    "salary_range": null,
+    "type": {
+      "id": "open",
+      "name": "Открытая"
+    },
+    "allow_messages": false,
+    "experience": {
+      "id": "between3And6",
+      "name": "От 3 до 6 лет"
+    },
+    "department": {
+      "id": "ozonru-2180-dev",
+      "name": "Ozon Tech"
+    },
+    "show_contacts": false,
+    "description": "<p>Привет! Это команда продуктовой безопасности.<br />На сегодняшний день трудно представить какой-либо большой бизнес без сплочённой и компетентной команды информационной безопасности. Ozon не исключение.</p> <p>Сейчас мы находимся в поиске нового коллеги в команду Продуктовой безопасности, который пополнит уже существующую команду и будет участвовать в процессах безопасной разработки.</p> <p><br /><strong>Вы будете</strong></p> <ul> <li>Внедрять ML/LLM для поиска уязвимостей в коде и улучшать имеющиеся инструменты</li> <li>Внедрять практики Code Review</li> <li>Развитие требований по безопасности кода, применимых к продуктам внутренних сервисов или системы аутентификации OzonID</li> <li>Развивать контроли безопасности, отличные от типичных SAST/DAST/SCA</li> <li>Проводить аудиты безопасности сервисов и сопровождать устранение выявленных уязвимостей</li> <li>Консультировать команды разработки по вопросам безопасности</li> <li>Работать над проектами значимо повышающими уровень безопасности пользователей и сотрудников - повышение безопасности системы аутентификации, инвентаризация изменений в сервисах</li> </ul> <p><strong>Нам важно</strong></p> <ul> <li>Понимание цикла безопасной разработки ПО (Secure SDLC)</li> <li>Практический опыт анализа приложений</li> <li>Понимание причин возникновения и принципов эксплуатации уязвимостей</li> <li>Понимание принципов устранения основных угроз из OWASP Top 10, CWE Top 25</li> <li>Опыт проведения моделирования угроз</li> <li>Опыт внедрения security-требований в компании</li> <li>Опыт проведения security code review</li> <li>Использование Linux на уровне уверенного пользователя</li> <li>Знакомство со стандартами безопасности в области разработки ПО (OWASP/MITRE/BSIMM)</li> <li>Умение писать код на любом из языков go/python/java/С#/javascript.</li> </ul> <p><strong>Будет плюсом</strong></p> <ul> <li>Опыт внедрения ML/LLM в задачах безопасности/решения рутинных задач</li> <li>Опыт ведения крупных проектов по безопасности, например, внедрение istio, межсервисной авторизации/аутентификации, networkPolicy в k8s, antiSSRF-прокси, Content Security Policy или развитие обучающих программ по безопасности для сотрудников или иные примеры проектов</li> <li>Опыт руководства командой или наставничества стажеров/новых сотрудников</li> </ul>",
+    "inclusiveness_description": null,
+    "inclusiveness_types": [],
+    "vacancy_constructor_template": null,
+    "key_skills": [
+      {
+        "name": "Information Security"
+      },
+      {
+        "name": "Информационная безопасность"
+      },
+      {
+        "name": "OWASP Top 10"
+      },
+      {
+        "name": "SSDLC"
+      }
+    ],
+    "auto_response": {
+      "accept_auto_response": false
+    },
+    "accept_handicapped": false,
+    "accept_kids": false,
+    "age_restriction": null,
+    "archived": false,
+    "specializations": [],
+    "professional_roles": [
+      {
+        "id": "116",
+        "name": "Специалист по информационной безопасности"
+      }
+    ],
+    "code": null,
+    "hidden": false,
+    "quick_responses_allowed": false,
+    "driver_license_types": [],
+    "accept_incomplete_resumes": false,
+    "employer": {
+      "id": "2180",
+      "name": "Ozon",
+      "trusted": true,
+      "alternate_url": "https://hh.ru/employer/2180"
+    },
+    "published_at": "2026-09-22T11:49:19+0300",
+    "created_at": "2026-09-22T11:49:19+0300",
+    "initial_created_at": "2026-08-24T14:21:17+0300",
+    "has_test": false,
+    "test": null,
+    "alternate_url": "https://hh.ru/vacancy/136554010?tech_source=api",
+    "accept_temporary": false,
+    "languages": [],
+    "approved": true,
+    "employment_form": {
+      "id": "FULL",
+      "name": "Полная"
+    },
+    "fly_in_fly_out_duration": [],
+    "accept_labor_contract": true,
+    "civil_law_contracts": [],
+    "internship": false,
+    "night_shifts": false,
+    "work_format": [
+      {
+        "id": "ON_SITE",
+        "name": "На месте работодателя"
+      },
+      {
+        "id": "REMOTE",
+        "name": "Удалённо"
+      },
+      {
+        "id": "HYBRID",
+        "name": "Гибрид"
+      }
+    ],
+    "work_schedule_by_days": [
+      {
+        "id": "FIVE_ON_TWO_OFF",
+        "name": "5/2"
+      }
+    ],
+    "working_hours": [
+      {
+        "id": "HOURS_8",
+        "name": "8 часов"
+      }
+    ],
+    "show_logo_in_search": true,
+    "closed_for_applicants": false
+  }
+}

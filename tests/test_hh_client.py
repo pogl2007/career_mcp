@@ -275,3 +275,49 @@ async def test_rate_limit_holds_under_parallel_calls(tmp_path, api):
     gaps = [b - a for a, b in zip(sent_at, sent_at[1:])]
     assert min(gaps) >= 0.5 - 1e-9
     assert sent_at[-1] - sent_at[0] == pytest.approx(4.5)
+
+
+# ---------------------------------------------------------------- токен приложения
+
+
+async def test_request_app_token_sends_client_credentials(tmp_path, api):
+    from career_mcp.hh_client import request_app_token  # noqa: PLC0415
+
+    settings = make_settings(tmp_path, hh_client_id="CID", hh_client_secret="CSECRET")
+    route = api.post("/token").respond(200, json={"access_token": "APP-TOKEN", "token_type": "bearer"})
+
+    assert await request_app_token(settings) == "APP-TOKEN"
+    body = route.calls.last.request.content.decode()
+    assert "grant_type=client_credentials" in body and "client_id=CID" in body and "client_secret=CSECRET" in body
+    assert route.calls.last.request.headers["HH-User-Agent"].endswith("(dev@example.com)")
+
+
+async def test_request_app_token_too_early(tmp_path, api):
+    from career_mcp.hh_client import request_app_token  # noqa: PLC0415
+
+    settings = make_settings(tmp_path, hh_client_id="CID", hh_client_secret="CSECRET")
+    api.post("/token").respond(403, json={"error": "forbidden", "error_description": "app token refresh too early"})
+    with pytest.raises(HHRateLimited) as exc:
+        await request_app_token(settings)
+    assert "5 минут" in exc.value.message
+
+
+async def test_request_app_token_bad_credentials_hides_secret(tmp_path, api):
+    from career_mcp.hh_client import request_app_token  # noqa: PLC0415
+
+    settings = make_settings(tmp_path, hh_client_id="CID", hh_client_secret="CSECRET")
+    api.post("/token").respond(400, json={"error": "invalid_client", "error_description": "client_id or client_secret not found"})
+    with pytest.raises(HHAuthError) as exc:
+        await request_app_token(settings)
+    assert "invalid_client" in exc.value.message
+    assert "CSECRET" not in exc.value.message
+
+
+def test_write_env_value_replaces_or_appends(tmp_path):
+    from career_mcp.config import write_env_value  # noqa: PLC0415
+
+    env = tmp_path / ".env"
+    env.write_text("# комментарий\nHH_ACCESS_TOKEN=\nLLM_ENABLED=true\n", encoding="utf-8")
+    write_env_value(env, "HH_ACCESS_TOKEN", "NEW")
+    write_env_value(env, "HH_CLIENT_ID", "CID")
+    assert env.read_text(encoding="utf-8") == "# комментарий\nHH_ACCESS_TOKEN=NEW\nLLM_ENABLED=true\nHH_CLIENT_ID=CID\n"

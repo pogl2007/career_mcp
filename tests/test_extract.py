@@ -72,6 +72,38 @@ def test_unknown_key_skills_go_to_other_requirements(skills):
     assert "Excel" in req.must_have
 
 
+@pytest.mark.parametrize(
+    ("heading", "section"),
+    [
+        # заголовки из настоящих вакансий hh (2026-09-25), которые правила сначала не узнавали
+        ("Что нужно будет делать:", "responsibilities"),
+        ("Вы будете", "responsibilities"),
+        ("Примеры задач, которые решают стажёры:", "responsibilities"),
+        ("Что ждем от тебя:", "requirements"),
+        ("Ты идеально нам подходишь, если ты:", "requirements"),
+        ("Пожалуйста, обрати внимание на требования, это важно:", "requirements"),
+        ("Что вас ждёт", "conditions"),
+        ("Как попасть к нам:", "other"),
+        ("О нашей команде:", "other"),
+    ],
+)
+def test_real_world_headings(heading, section):
+    from career_mcp.text import split_sections  # noqa: PLC0415
+
+    sections = split_sections(f"{heading}\n- пункт раздела")
+    assert sections[section] == ["пункт раздела"]
+
+
+def test_company_description_is_not_a_requirement(skills):
+    vacancy = {
+        "id": "1", "name": "Стажер-маркетолог", "key_skills": [],
+        "description": "<p>Мы исследуем AI/ML подходы и строим ML-модели.</p>"
+                       "<p><b>Задачи:</b></p><ul><li>готовить отчёты в Excel</li></ul>",
+    }
+    req = rule_requirements(vacancy, skills)
+    assert req.must_have == ["Excel"]
+
+
 def test_resume_skills_parsed(tmp_path, skills):
     path = tmp_path / "cv.md"
     path.write_text(RESUME_TEXT, encoding="utf-8")
@@ -173,3 +205,16 @@ async def test_llm_payment_error_is_not_fatal(skills, llm_api):
     finally:
         await llm.aclose()
     assert not req.llm_used
+
+
+async def test_llm_is_paused_after_provider_error(skills, llm_api):
+    route = llm_api.post("/chat/completions").mock(return_value=httpx.Response(402, json={"error": "check-in"}))
+    llm = LLMClient(LLM_URL, "m", limiter=TokenBucket(1000, 1000))
+    extractor = RequirementExtractor(skills, llm)
+    try:
+        await extractor.extract(VACANCIES["100001"])
+        second = await extractor.extract(VACANCIES["100005"])
+    finally:
+        await llm.aclose()
+    assert route.call_count == 1  # второй раз к недоступному провайдеру не идём
+    assert any("временно отключена" in n for n in second.notes)

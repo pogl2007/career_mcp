@@ -56,9 +56,12 @@ class SkillDictionary:
         self._wildcards: list[tuple[re.Pattern[str], Skill]] = []
         self._text: list[tuple[re.Pattern[str], Skill]] = []
         self._by_name: dict[str, Skill] = {}
+        self._implies: dict[str, list[str]] = {}
         for entry in entries:
             skill = Skill(entry["name"], entry.get("category"))
             self._by_name[norm(skill.name)] = skill
+            if entry.get("implies"):
+                self._implies[skill.name] = [str(x) for x in entry["implies"]]
             for alias in [skill.name, *(entry.get("aliases") or [])]:
                 alias = str(alias)
                 if "*" in alias:
@@ -114,6 +117,19 @@ class SkillDictionary:
             if m and (skill.name not in first_pos or m.start() < first_pos[skill.name]):
                 first_pos[skill.name] = m.start()
         return sorted(first_pos, key=first_pos.__getitem__)
+
+    def implied(self, names: list[str]) -> list[str]:
+        """Навыки, которые следуют из имеющихся (PyTorch → Deep Learning), и которых ещё нет в списке."""
+        have = set(names)
+        out: list[str] = []
+        queue = list(names)
+        while queue:
+            for implied in self._implies.get(queue.pop(0), []):
+                if implied not in have:
+                    have.add(implied)
+                    out.append(implied)
+                    queue.append(implied)
+        return out
 
     def normalize_many(self, raws: list[str]) -> list[str]:
         out: list[str] = []

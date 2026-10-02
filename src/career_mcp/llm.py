@@ -22,6 +22,10 @@ class LLMError(Exception):
     pass
 
 
+class LLMUnavailable(LLMError):
+    """Провайдер недоступен целиком (оплата, ключ, лимит, сеть), а не конкретный ответ плохой."""
+
+
 def parse_json_object(content: str) -> dict[str, Any]:
     """Достаёт JSON-объект из ответа модели, даже если он обёрнут в ```json ... ```."""
     content = re.sub(r"^```(?:json)?|```$", "", content.strip(), flags=re.M).strip()
@@ -69,17 +73,17 @@ class LLMClient:
         try:
             response = await self._http.post("/chat/completions", json=payload)
         except httpx.TimeoutException:
-            raise LLMError("LLM не ответила вовремя.") from None
+            raise LLMUnavailable("LLM не ответила вовремя.") from None
         except httpx.TransportError as exc:
-            raise LLMError(f"Нет соединения с LLM ({type(exc).__name__}).") from None
+            raise LLMUnavailable(f"Нет соединения с LLM ({type(exc).__name__}).") from None
 
         status = response.status_code
         if status == 429:
-            raise LLMError("Лимит запросов к LLM исчерпан, попробуйте через минуту.")
+            raise LLMUnavailable("Лимит запросов к LLM исчерпан, попробуйте через минуту.")
         if status == 402:
-            raise LLMError("LLM-провайдер требует оплату, подписку или ежедневную отметку.")
+            raise LLMUnavailable("LLM-провайдер требует оплату, подписку или ежедневную отметку.")
         if status in (401, 403):
-            raise LLMError("Ключ LLM отклонён провайдером.")
+            raise LLMUnavailable("Ключ LLM отклонён провайдером.")
         if status >= 400:
             raise LLMError(f"LLM вернула ошибку {status}.")
         try:

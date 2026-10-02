@@ -9,6 +9,7 @@
 from __future__ import annotations
 
 import argparse
+import asyncio
 import json
 import logging
 import sys
@@ -25,10 +26,10 @@ from mcp.types import ToolAnnotations
 from pydantic import Field
 
 from career_mcp.cache import Cache
-from career_mcp.config import Settings
+from career_mcp.config import PROJECT_ROOT, Settings, write_env_value
 from career_mcp.dicts import Directory
 from career_mcp.extract import RequirementExtractor
-from career_mcp.hh_client import HHClient, HHError, validate_vacancy_id
+from career_mcp.hh_client import HHClient, HHError, request_app_token, validate_vacancy_id
 from career_mcp.llm import LLMClient
 from career_mcp.market import build_snapshot, collect_sample, dedup, gap_items
 from career_mcp.models import (
@@ -48,7 +49,7 @@ from career_mcp import prompts
 from career_mcp.resume import ResumeNotFound, ResumeStore
 from career_mcp.skills import EmbeddingMatcher, SkillDictionary, match_skills
 from career_mcp.storage import Shortlist
-from career_mcp.text import find_suspicious_lines, html_to_text, split_sections
+from career_mcp.text import find_suspicious_lines, html_to_text, label, split_sections
 
 log = logging.getLogger("career_mcp.server")
 
@@ -154,8 +155,8 @@ def vacancy_detail(v: dict[str, Any]) -> VacancyDetail:
         employer=(v.get("employer") or {}).get("name"),
         area=(v.get("area") or {}).get("name"),
         salary=format_salary(v.get("salary_range"), v.get("salary")),
-        experience=(v.get("experience") or {}).get("name"),
-        work_format=[f.get("name", "") for f in v.get("work_format") or []],
+        experience=label((v.get("experience") or {}).get("name")),
+        work_format=[label(f.get("name") or "") for f in v.get("work_format") or []],
         key_skills=[s["name"] for s in v.get("key_skills") or [] if s.get("name")],
         responsibilities=sections["responsibilities"],
         requirements=sections["requirements"],
@@ -170,14 +171,28 @@ def vacancy_detail(v: dict[str, Any]) -> VacancyDetail:
     )
 
 
+MIN_SKILLS_FOR_VERDICT = 3
+
+
 def build_match(
-    req: Requirements, resume_skills: set[str], skills: SkillDictionary, embeddings: EmbeddingMatcher | None
+    req: Requirements,
+    resume_skills: set[str],
+    skills: SkillDictionary,
+    embeddings: EmbeddingMatcher | None,
+    implied: set[str] = frozenset(),
 ) -> MatchResult:
     matched, missing = match_skills(req.must_have, resume_skills, skills, embeddings)
+    # Навык, закрытый только следствием (PostgreSQL → SQL), честно помечаем как implied.
+    matched = [(r, b, "implied" if b in implied and m != "embedding" else m, s) for r, b, m, s in matched]
     nice_matched, nice_missing = match_skills(req.nice_to_have, resume_skills, skills, embeddings)
     coverage = round(len(matched) / len(req.must_have), 3) if req.must_have else None
     if coverage is None:
         verdict = "В вакансии не нашлось обязательных навыков — оценить покрытие нельзя, смотрите стек."
+    elif len(req.must_have) < MIN_SKILLS_FOR_VERDICT:
+        verdict = (
+            f"Распознано мало обязательных навыков ({len(req.must_have)}) — покрытие {coverage:.0%} ненадёжно; "
+            "смотрите other_requirements и текст вакансии."
+        )
     elif coverage >= 0.7:
         verdict = "Хорошее соответствие: большинство обязательных навыков есть в резюме."
     elif coverage >= 0.4:
@@ -295,6 +310,9 @@ def create_server(
         ctx: Context,
         area: Annotated[str, Field(description="Город или регион названием из справочника hh")] = "Москва",
         sample_size: Annotated[int, Field(ge=10, le=200, description="Сколько вакансий разобрать")] = 100,
+        experience: Annotated[
+            str | None, Field(description="Фильтр по опыту: noExperience, between1And3 … или словами («нет опыта»)")
+        ] = None,
     ) -> MarketSnapshot:
         """Срез рынка по роли и городу: сколько вакансий, распределение по опыту и формату
         работы, зарплаты (медиана и квартили только по вакансиям с указанной зарплатой,
@@ -308,9 +326,10 @@ def create_server(
         with tool_errors():
             s.hh.ensure_token()
             area_id, area_name = await s.directory.resolve_area(area)
-            found, details, notes = await collect_sample(
-                s.hh, {"text": query, "area": area_id}, sample_size, progress
-            )
+            params: dict[str, Any] = {"text": query, "area": area_id}
+            if experience:
+                params["experience"] = await s.directory.resolve_experience(experience)
+            found, details, notes = await collect_sample(s.hh, params, sample_size, progress)
             rates = await s.directory.currency_rates()
         return build_snapshot(
             query=query, area=area_name, found=found, details=details,
@@ -342,7 +361,7 @@ def create_server(
             resume = s.resume.load()
             v = await s.hh.get_vacancy(vacancy_id)
             req = await s.extractor.extract(v)
-        return build_match(req, set(resume.skills), s.skills, s.embeddings)
+        return build_match(req, set(resume.skills), s.skills, s.embeddings, set(resume.implied_skills))
 
     @mcp.tool(annotations=READ_ONLY, timeout=300)
     async def skill_gap(
@@ -350,6 +369,9 @@ def create_server(
         ctx: Context,
         area: Annotated[str, Field(description="Город или регион названием из справочника hh")] = "Москва",
         sample_size: Annotated[int, Field(ge=10, le=200)] = 100,
+        experience: Annotated[
+            str | None, Field(description="Фильтр по опыту: noExperience, between1And3 … или словами («нет опыта»)")
+        ] = None,
     ) -> SkillGap:
         """Навыки, которые рынок чаще всего просит по запросу и которых нет в резюме,
         по убыванию частоты. Основа для плана подготовки."""
@@ -362,7 +384,10 @@ def create_server(
             resume = s.resume.load()
             s.hh.ensure_token()
             area_id, area_name = await s.directory.resolve_area(area)
-            _, details, notes = await collect_sample(s.hh, {"text": query, "area": area_id}, sample_size, progress)
+            params: dict[str, Any] = {"text": query, "area": area_id}
+            if experience:
+                params["experience"] = await s.directory.resolve_experience(experience)
+            _, details, notes = await collect_sample(s.hh, params, sample_size, progress)
         unique, _ = dedup(details)
         missing, present = gap_items(unique, s.skills, set(resume.skills))
         notes.append("Частота — доля уникальных вакансий выборки, где навык упомянут в key_skills или описании.")
@@ -495,16 +520,36 @@ def configure_logging(level: str = "INFO") -> None:
     root.propagate = False
 
 
+async def _get_token(settings: Settings, *, force: bool) -> int:
+    has_token = bool(settings.hh_access_token and settings.hh_access_token.get_secret_value())
+    if has_token and not force:
+        print("HH_ACCESS_TOKEN уже есть в .env. Новый запрос отзовёт его — если это нужно, добавьте --force.")
+        return 1
+    try:
+        token = await request_app_token(settings)
+    except HHError as exc:
+        print(exc.message, file=sys.stderr)
+        return 2
+    write_env_value(PROJECT_ROOT / ".env", "HH_ACCESS_TOKEN", token)
+    print(f"Токен приложения получен (…{token[-4:]}) и записан в .env как HH_ACCESS_TOKEN.")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(prog="career-mcp", description="MCP-сервер к API hh.ru")
     parser.add_argument("--transport", choices=["stdio", "http"], default="stdio",
                         help="stdio — для Claude Desktop, http — для агентов (эндпоинт /mcp)")
     parser.add_argument("--host", default=None)
     parser.add_argument("--port", type=int, default=None)
+    parser.add_argument("--get-token", action="store_true",
+                        help="разово получить токен приложения по HH_CLIENT_ID/HH_CLIENT_SECRET и записать в .env")
+    parser.add_argument("--force", action="store_true", help="с --get-token: перевыпустить токен (старый отзовётся)")
     args = parser.parse_args(argv)
 
     settings = Settings()
     configure_logging(settings.log_level)
+    if args.get_token:
+        raise SystemExit(asyncio.run(_get_token(settings, force=args.force)))
     mcp = create_server(settings)
     log.info(
         "career-mcp: транспорт %s, токен hh %s, LLM %s",

@@ -7,6 +7,9 @@
 #   - остальные — без учёта регистра, по границам слова;
 #   - «*» — любое окончание слова: «статистик*» найдёт «статистики», «статистику».
 # Каноническое название само считается синонимом.
+#
+# implies — что следует из навыка: кто пишет на PyTorch, знает Deep Learning; кто работает
+# с PostgreSQL, знает SQL. Применяется только к резюме (что умеет кандидат), не к вакансиям.
 
 skills:
   # --- языки программирования ---
@@ -62,14 +65,14 @@ skills:
 
   # --- deep learning ---
   - {name: Deep Learning, category: dl, aliases: [deep learning, глубок* обучени*, DL]}
-  - {name: PyTorch, category: dl, aliases: [torch]}
-  - {name: PyTorch Lightning, category: dl, aliases: []}
-  - {name: TensorFlow, category: dl, aliases: []}
-  - {name: Keras, category: dl, aliases: []}
-  - {name: JAX, category: dl, aliases: []}
+  - {name: PyTorch, category: dl, aliases: [torch], implies: [Deep Learning]}
+  - {name: PyTorch Lightning, category: dl, aliases: [], implies: [PyTorch, Deep Learning]}
+  - {name: TensorFlow, category: dl, aliases: [], implies: [Deep Learning]}
+  - {name: Keras, category: dl, aliases: [], implies: [Deep Learning]}
+  - {name: JAX, category: dl, aliases: [], implies: [Deep Learning]}
   - {name: NLP, category: nlp, aliases: [natural language processing, обработк* естественного языка]}
-  - {name: Hugging Face Transformers, category: nlp, aliases: [transformers, hugging face, huggingface, hf transformers]}
-  - {name: BERT, category: nlp, aliases: [roberta, rubert]}
+  - {name: Hugging Face Transformers, category: nlp, aliases: [transformers, hugging face, huggingface, hf transformers], implies: [NLP, Deep Learning]}
+  - {name: BERT, category: nlp, aliases: [roberta, rubert], implies: [NLP, Deep Learning]}
   - {name: ASR, category: speech, aliases: [speech recognition, распознавани* речи, whisper]}
   - {name: TTS, category: speech, aliases: [text-to-speech, синтез* речи]}
   - {name: Computer Vision, category: cv, aliases: [computer vision, компьютерн* зрени*]}
@@ -78,25 +81,25 @@ skills:
 
   # --- LLM ---
   - {name: LLM, category: llm, aliases: [llms, large language models, больш* языков* модел*]}
-  - {name: RAG, category: llm, aliases: [retrieval-augmented generation, retrieval augmented generation]}
+  - {name: RAG, category: llm, aliases: [retrieval-augmented generation, retrieval augmented generation], implies: [LLM, Эмбеддинги]}
   - {name: LangChain, category: llm, aliases: []}
   - {name: LangGraph, category: llm, aliases: []}
   - {name: LlamaIndex, category: llm, aliases: [llama index, llama-index]}
   - {name: Prompt engineering, category: llm, aliases: [prompt engineering, промпт-инжиниринг, промпт инжиниринг, промптинг]}
   - {name: Fine-tuning, category: llm, aliases: [fine tuning, finetuning, файнтюнинг, дообучени*, дообуча*]}
-  - {name: LoRA, category: llm, aliases: [qlora]}
-  - {name: vLLM, category: llm, aliases: []}
+  - {name: LoRA, category: llm, aliases: [qlora], implies: [Fine-tuning]}
+  - {name: vLLM, category: llm, aliases: [], implies: [LLM]}
   - {name: Ollama, category: llm, aliases: []}
   - {name: OpenAI API, category: llm, aliases: [openai, chatgpt api]}
   - {name: MCP, category: llm, aliases: [model context protocol]}
   - {name: LLM-агенты, category: llm, aliases: [llm agents, ai agents, ai-агент*, llm-агент*, агентн* систем*]}
   - {name: Эмбеддинги, category: llm, aliases: [embeddings, embedding, эмбеддинг*, векторн* представлени*]}
   - {name: Векторные БД, category: llm, aliases: [vector database, vector db, векторн* баз*, векторн* бд]}
-  - {name: Qdrant, category: llm, aliases: []}
-  - {name: FAISS, category: llm, aliases: []}
-  - {name: ChromaDB, category: llm, aliases: [chroma]}
-  - {name: pgvector, category: llm, aliases: []}
-  - {name: Milvus, category: llm, aliases: []}
+  - {name: Qdrant, category: llm, aliases: [], implies: [Векторные БД]}
+  - {name: FAISS, category: llm, aliases: [], implies: [Векторные БД]}
+  - {name: ChromaDB, category: llm, aliases: [chroma], implies: [Векторные БД]}
+  - {name: pgvector, category: llm, aliases: [], implies: [Векторные БД, PostgreSQL]}
+  - {name: Milvus, category: llm, aliases: [], implies: [Векторные БД]}
 
   # --- MLOps и инфраструктура ---
   - {name: MLOps, category: mlops, aliases: []}
@@ -136,10 +139,10 @@ skills:
   - {name: Gradio, category: backend, aliases: []}
 
   # --- базы данных и big data ---
-  - {name: PostgreSQL, category: database, aliases: [postgres, postgre sql, psql, постгрес*]}
-  - {name: MySQL, category: database, aliases: []}
-  - {name: MS SQL, category: database, aliases: [mssql, sql server]}
-  - {name: ClickHouse, category: database, aliases: [click house]}
+  - {name: PostgreSQL, category: database, aliases: [postgres, postgre sql, psql, постгрес*], implies: [SQL]}
+  - {name: MySQL, category: database, aliases: [], implies: [SQL]}
+  - {name: MS SQL, category: database, aliases: [mssql, sql server], implies: [SQL]}
+  - {name: ClickHouse, category: database, aliases: [click house], implies: [SQL]}
   - {name: MongoDB, category: database, aliases: [mongo]}
   - {name: Elasticsearch, category: database, aliases: [elastic search, opensearch]}
   - {name: NoSQL, category: database, aliases: []}

@@ -72,3 +72,9 @@ def test_match_skills_uses_synonyms(skills):
     got = {m[0]: m[2] for m in matched}
     assert got == {"Postgres": "synonym", "PyTorch": "exact"}
     assert missing == ["Kubernetes"]
+
+
+def test_implied_skills_for_resume(skills):
+    implied = skills.implied(["PyTorch", "PostgreSQL", "LoRA"])
+    assert {"Deep Learning", "SQL", "Fine-tuning"} <= set(implied)
+    assert "PyTorch" not in implied  # только новые навыки

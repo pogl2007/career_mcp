@@ -24,6 +24,7 @@ async def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--query", default="ML стажёр")
     parser.add_argument("--area", default="Москва")
+    parser.add_argument("--experience", nargs="*", default=[], help="id опыта: noExperience between1And3 ...")
     parser.add_argument("-n", type=int, default=30)
     parser.add_argument("--match", type=int, default=10)
     parser.add_argument("--force", action="store_true", help="перезаписать уже начатую разметку")
@@ -39,7 +40,10 @@ async def main() -> int:
     need_token(settings)
     async with open_services(settings) as svc:
         area_id, _ = await svc.directory.resolve_area(args.area)
-        _, details, _ = await collect_sample(svc.hh, {"text": args.query, "area": area_id}, min(200, args.n * 2))
+        params = {"text": args.query, "area": area_id}
+        if args.experience:
+            params["experience"] = args.experience
+        _, details, _ = await collect_sample(svc.hh, params, min(200, args.n * 2))
     unique, _ = dedup(details)
     chosen = unique[: args.n]
 

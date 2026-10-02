@@ -27,6 +27,7 @@ class Resume:
     text: str
     skills: list[str] = field(default_factory=list)
     explicit_skills: list[str] = field(default_factory=list)
+    implied_skills: list[str] = field(default_factory=list)  # PostgreSQL → SQL, PyTorch → Deep Learning
 
 
 def _skills_section(text: str) -> list[str]:
@@ -65,7 +66,11 @@ class ResumeStore:
             [x for x in _skills_section(text) if 1 < len(x.strip()) <= 40]
         )
         found = self._skills.find_in_text(text)
-        all_skills = list(dict.fromkeys([*explicit_names, *found]))
-        resume = Resume(path=self.path, text=text, skills=all_skills, explicit_skills=explicit_names)
+        direct = list(dict.fromkeys([*explicit_names, *found]))
+        implied = self._skills.implied(direct)
+        resume = Resume(
+            path=self.path, text=text, skills=[*direct, *implied],
+            explicit_skills=explicit_names, implied_skills=implied,
+        )
         self._cached = (mtime, resume)
         return resume

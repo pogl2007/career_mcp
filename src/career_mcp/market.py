@@ -23,7 +23,7 @@ from typing import Any
 from career_mcp.hh_client import MAX_DEPTH, HHClient, HHError, HHNotFound
 from career_mcp.models import GapItem, MarketSnapshot, SalaryStats, SkillCount
 from career_mcp.skills import SkillDictionary
-from career_mcp.text import html_to_text, norm
+from career_mcp.text import html_to_text, label, norm
 
 # Годовой доход → ставка НДФЛ на часть дохода в этом диапазоне (с 2025 года).
 NDFL_BRACKETS: list[tuple[float, float]] = [
@@ -191,9 +191,9 @@ def distribution(vacancies: list[dict[str, Any]], field: str) -> dict[str, int]:
     for v in vacancies:
         value = v.get(field)
         if isinstance(value, list):
-            counter.update(x.get("name") or x.get("id") for x in value if isinstance(x, dict))
+            counter.update(label(x.get("name") or x.get("id")) for x in value if isinstance(x, dict))
         elif isinstance(value, dict):
-            counter[value.get("name") or value.get("id")] += 1
+            counter[label(value.get("name") or value.get("id"))] += 1
         else:
             counter["не указано"] += 1
     return dict(sorted(counter.items(), key=lambda kv: (-kv[1], kv[0])))

@@ -137,9 +137,11 @@ async def test_resume_resource(client):
 async def test_match_resume(client):
     result = await client.call_tool("match_resume", {"vacancy_id": "100001"})
     m = result.structured_content
-    assert m["must_have_coverage"] == pytest.approx(5 / 6, abs=1e-3)
-    assert m["missing"] == ["NLP"]
-    assert {x["required"] for x in m["matched"]} == {"Python", "PyTorch", "Hugging Face Transformers", "SQL", "PostgreSQL"}
+    assert m["must_have_coverage"] == 1.0
+    assert m["missing"] == []
+    methods = {x["required"]: x["method"] for x in m["matched"]}
+    assert methods["NLP"] == "implied"  # NLP в резюме не назван, но следует из Hugging Face Transformers
+    assert methods["Python"] == "exact"
     assert m["nice_to_have_matched"] == ["Docker"]
     assert "LangChain" in m["extra_in_resume"]
     assert m["verdict"].startswith("Хорошее")
@@ -157,7 +159,8 @@ async def test_skill_gap(client):
     missing = [g["skill"] for g in gap["missing"]]
     assert "Python" not in missing
     assert missing[0] == "Английский язык"  # в тестовом резюме английского нет, в вакансиях — трижды
-    assert {"Kubernetes", "NLP"} <= set(missing)
+    assert "Kubernetes" in missing
+    assert "NLP" not in missing  # следует из Hugging Face Transformers в резюме
     counts = [g["count"] for g in gap["missing"]]
     assert counts == sorted(counts, reverse=True)
     assert "Python" in [g["skill"] for g in gap["already_have"]]

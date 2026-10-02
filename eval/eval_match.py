@@ -42,7 +42,7 @@ async def main() -> int:
         for r in rows:
             v = await svc.hh.get_vacancy(r["vacancy_id"])
             req = await svc.extractor.extract(v)
-            m = build_match(req, set(resume.skills), svc.skills, svc.embeddings)
+            m = build_match(req, set(resume.skills), svc.skills, svc.embeddings, set(resume.implied_skills))
             coverage = (m.must_have_coverage or 0.0) * 100
             score = float(r["my_score_0_100"])
             mine.append(score)

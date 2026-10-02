@@ -25,6 +25,9 @@ class Settings(BaseSettings):
 
     # --- hh.ru ---
     hh_access_token: SecretStr | None = None
+    # Нужны только для разового получения токена: python -m career_mcp --get-token
+    hh_client_id: str | None = None
+    hh_client_secret: SecretStr | None = None
     hh_contact_email: str | None = None
     hh_app_name: str = "career-mcp"
     hh_base_url: str = "https://api.hh.ru"
@@ -81,3 +84,15 @@ class Settings(BaseSettings):
     def user_agent(self) -> str:
         contact = self.hh_contact_email or "contact-not-set"
         return f"{self.hh_app_name}/{__version__} ({contact})"
+
+
+def write_env_value(path: Path, key: str, value: str) -> None:
+    """Записывает KEY=value в .env: заменяет существующую строку или добавляет новую."""
+    lines = path.read_text(encoding="utf-8").splitlines() if path.exists() else []
+    for i, line in enumerate(lines):
+        if line.split("=", 1)[0].strip() == key:
+            lines[i] = f"{key}={value}"
+            break
+    else:
+        lines.append(f"{key}={value}")
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
