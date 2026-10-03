@@ -40,9 +40,11 @@ def _skills_section(text: str) -> list[str]:
         if inside and _ANY_HEADING.match(line):
             inside = False
         if inside:
-            item = re.sub(r"^[\s>*\-•]+", "", line)
-            item = re.sub(r"\*\*([^*]+)\*\*:?", "", item)  # «**Языки:** Python» → «Python»
-            out.extend(p for p in re.split(r"[,;·|/]| — ", item) if p.strip())
+            item = re.sub(r"^\s*(?:[-•>]|\*(?!\*))\s*", "", line)  # маркер списка, но не начало **жирного**
+            item = re.sub(r"\*\*[^*]+?:?\*\*:?", "", item)  # «**Языки:** Python» → «Python»
+            item = re.sub(r"^[^,:]{1,30}:\s", "", item)  # «ML и DL: PyTorch» → «PyTorch»
+            # по «/» не режем: «CI/CD», «short/long-term memory»
+            out.extend(p.strip() for p in re.split(r"[,;·|]| — ", item) if p.strip())
     return out
 
 

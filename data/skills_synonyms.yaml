@@ -73,7 +73,7 @@ skills:
   - {name: NLP, category: nlp, aliases: [natural language processing, обработк* естественного языка]}
   - {name: Hugging Face Transformers, category: nlp, aliases: [transformers, hugging face, huggingface, hf transformers], implies: [NLP, Deep Learning]}
   - {name: BERT, category: nlp, aliases: [roberta, rubert], implies: [NLP, Deep Learning]}
-  - {name: ASR, category: speech, aliases: [speech recognition, распознавани* речи, whisper]}
+  - {name: ASR, category: speech, aliases: [speech recognition, распознавани* речи, whisper, faster-whisper]}
   - {name: TTS, category: speech, aliases: [text-to-speech, синтез* речи]}
   - {name: Computer Vision, category: cv, aliases: [computer vision, компьютерн* зрени*]}
   - {name: OpenCV, category: cv, aliases: [cv2]}
@@ -82,8 +82,8 @@ skills:
   # --- LLM ---
   - {name: LLM, category: llm, aliases: [llms, large language models, больш* языков* модел*]}
   - {name: RAG, category: llm, aliases: [retrieval-augmented generation, retrieval augmented generation], implies: [LLM, Эмбеддинги]}
-  - {name: LangChain, category: llm, aliases: []}
-  - {name: LangGraph, category: llm, aliases: []}
+  - {name: LangChain, category: llm, aliases: [], implies: [LLM]}
+  - {name: LangGraph, category: llm, aliases: [], implies: [LLM-агенты, LLM]}
   - {name: LlamaIndex, category: llm, aliases: [llama index, llama-index]}
   - {name: Prompt engineering, category: llm, aliases: [prompt engineering, промпт-инжиниринг, промпт инжиниринг, промптинг]}
   - {name: Fine-tuning, category: llm, aliases: [fine tuning, finetuning, файнтюнинг, дообучени*, дообуча*]}
@@ -91,8 +91,15 @@ skills:
   - {name: vLLM, category: llm, aliases: [], implies: [LLM]}
   - {name: Ollama, category: llm, aliases: []}
   - {name: OpenAI API, category: llm, aliases: [openai, chatgpt api]}
-  - {name: MCP, category: llm, aliases: [model context protocol]}
-  - {name: LLM-агенты, category: llm, aliases: [llm agents, ai agents, ai-агент*, llm-агент*, агентн* систем*]}
+  - {name: MCP, category: llm, aliases: [model context protocol, fastmcp, mcp-сервер*], implies: [Tool calling, LLM]}
+  - {name: LLM-агенты, category: llm, aliases: [llm agents, ai agents, ai agent, ai-агент*, llm-агент*, ии-агент*, агентн* систем*,
+      агентн* подход*, мультиагент*, мульти-агент*, многоагент*, multi-agent, multiagent, agentic], implies: [LLM]}
+  - {name: CrewAI, category: llm, aliases: [crew ai], implies: [LLM-агенты]}
+  - {name: AutoGen, category: llm, aliases: [autogen studio], implies: [LLM-агенты]}
+  - {name: Pydantic AI, category: llm, aliases: [pydantic-ai, pydanticai], implies: [LLM-агенты]}
+  - {name: Tool calling, category: llm, aliases: [function calling, tool use, вызов* инструмент*, вызов* функци*]}
+  - {name: Structured output, category: llm, aliases: [structured outputs, json mode, структурированн* вывод*]}
+  - {name: sentence-transformers, category: nlp, aliases: [sentence transformers, sbert], implies: [Эмбеддинги]}
   - {name: Эмбеддинги, category: llm, aliases: [embeddings, embedding, эмбеддинг*, векторн* представлени*]}
   - {name: Векторные БД, category: llm, aliases: [vector database, vector db, векторн* баз*, векторн* бд]}
   - {name: Qdrant, category: llm, aliases: [], implies: [Векторные БД]}
@@ -129,7 +136,8 @@ skills:
   - {name: SQLAlchemy, category: backend, aliases: []}
   - {name: Alembic, category: backend, aliases: []}
   - {name: S3, category: devops, aliases: [amazon s3, minio, object storage]}
-  - {name: asyncio, category: backend, aliases: [aiohttp]}
+  - {name: asyncio, category: backend, aliases: [aiohttp, httpx]}
+  - {name: SSE, category: backend, aliases: [server-sent events]}
   - {name: Celery, category: backend, aliases: []}
   - {name: RabbitMQ, category: backend, aliases: []}
   - {name: Kafka, category: bigdata, aliases: [apache kafka]}
