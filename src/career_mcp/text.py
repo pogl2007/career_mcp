@@ -149,14 +149,18 @@ def split_sections(text: str) -> dict[str, list[str]]:
 
 # ---------------------------------------------------------------- инъекции
 
+# Ищем обращение к модели с командой, а не упоминание ИИ: в вакансиях про LLM фразы
+# «AI-ассистент», «System Prompt», «AI-модели» — обычное описание работы (живые данные 2026-09-29).
 _INJECTION = re.compile(
     r"игнорир\w*\s+(?:все\s+)?(?:предыдущ|прошл|системн|ранее)"
     r"|ignore\s+(?:all\s+)?(?:the\s+)?(?:previous|prior|above)"
     r"|disregard\s+(?:all\s+)?(?:previous|prior|above)"
-    r"|(?:\bии\b|\bai\b|llm|нейросет\w*)[\s-]*(?:ассистент|assistant|модел)"
-    r"|system\s+prompt|системн\w+\s+(?:промпт|инструкц)"
     r"|you\s+are\s+now|ты\s+теперь"
-    r"|напиши,?\s+что\s+кандидат",
+    r"|напиши,?\s+что\s+кандидат"
+    r"|new\s+instructions|новые\s+инструкции|system\s+message\s*:"
+    r"|(?:note|attention|instructions?)\s+(?:for|to)\s+(?:ai|llm|language\s+models?|assistants?|screening)"
+    r"|(?:language\s+model|языков\w+\s+модел\w+|\bии\b|\bai\b|ассистент\w*|assistant|нейросет\w+)\s*[:,]\s*"
+    r"(?:игнорир|ignore|напиши|write|ответь|reply|добавь|add|оцени|rate|выведи|output|the\s+correct)",
     re.I,
 )
 
