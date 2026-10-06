@@ -10,3 +10,4 @@ __pycache__/
 .ref/
 *.sqlite-*
 *.db-*
+.ruff_cache/
